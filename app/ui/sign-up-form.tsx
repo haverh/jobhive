@@ -27,16 +27,6 @@ export default function SignUpForm() {
   }
 
   const checkPasswords = () => {
-    // event: MouseEvent<HTMLButtonElement>
-    // event.preventDefault();
-    // console.log(formData?.password === formData.confirmPassword);
-    // if (!(formData?.password === formData.confirmPassword) ) {
-    //   console.log("Passwords Do Not Match");
-    // } else {
-      
-    //   console.log("Passwords Match");
-    // }
-
     return formData?.password === formData.confirmPassword;
   }
 
@@ -90,8 +80,8 @@ export default function SignUpForm() {
           <label htmlFor="name"
             className="mb-2 mt-3 block text-md font-medium text-gray-900">Name</label>
           <div className="border border-solid border-gray-400 rounded-full focus:outline-black">
-            <input type="name" id="name" name="name" placeholder="Enter your name"
-              className="w-full px-3 py-1 rounded-full"
+            <input type="text" id="name" name="name" placeholder="Enter your name"
+              className="w-full px-3 py-1 rounded-full border-0 focus:ring-0"
               onChange={(e) => { setFormData({...formData, name: e.target.value})}}
               required/>
           </div>
@@ -103,8 +93,8 @@ export default function SignUpForm() {
           <label htmlFor="email"
             className="mb-2 mt-3 block text-md font-medium text-gray-900">Email</label>
           <div className="border border-solid border-gray-400 rounded-full focus:outline-black">
-            <input type="email" id="email" name="email" placeholder="Enter your email address"
-              className="w-full px-3 py-1 rounded-full"
+            <input type="email" id="email" name="email" placeholder="Enter your email"
+              className="w-full px-3 py-1 rounded-full outline-yellow-500"
               onChange={(e) => { setFormData({...formData, email: e.target.value})}}
               required/>
           </div>
@@ -115,7 +105,7 @@ export default function SignUpForm() {
         <div>
           <label htmlFor="password"
             className="mb-2 mt-3 block text-md font-medium text-gray-900">Password</label>
-          <div className="border border-solid border-gray-400 rounded-full flex pr-2">
+          <div className="border border-solid border-gray-400 rounded-full focus:outline-black flex pr-2">
             <input type={visible[0] ? "text" :"password"} id="password" name="password" placeholder="Enter your password"
               className="flex-grow w-auto pl-3 py-1 border-0 rounded-full"
               onChange={(e) => { setFormData({...formData, password: e.target.value})}}
@@ -131,9 +121,9 @@ export default function SignUpForm() {
         <div>
           <label htmlFor="confirm-password"
             className="mb-2 mt-3 block text-md font-medium text-gray-900">Confirm Password</label>
-          <div className="border border-solid border-gray-400 rounded-full flex pr-2">
+          <div className="border border-solid border-gray-400 rounded-full focus:outline-black flex pr-2">
             <input type={visible[1] ? "text" :"password"} id="confirm-password" name="confirm-password" placeholder="Confirm your password"
-              className="flex-grow pl-3 py-1 border-0 rounded-full focus:outline-none"
+              className="w-full pl-3 py-1 border-0 rounded-full focus:outline-none"
               onChange={(e) => { setFormData({...formData, confirmPassword: e.target.value})}}
               required/>
             <button  type="button" onClick={(event) => toggleConfirmPassword(event)}>
