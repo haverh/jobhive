@@ -5,9 +5,11 @@ export type User = {
 }
 
 export type Application = {
+  id: string;
   role: string;
   company: string;
-  date_applied: Date;
+  job_posting: string;
+  date_applied: string;
   status: string;
 }
 
