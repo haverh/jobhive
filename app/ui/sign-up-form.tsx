@@ -16,13 +16,11 @@ export default function SignUpForm() {
   
   const togglePassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    console.log("Toggled Visiblity")
     setVisible(prev => [!prev[0], prev[1]]);
   }
 
   const toggleConfirmPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    console.log("Toggled Visiblity")
     setVisible(prev => [prev[0], !prev[1]]);
   }
 
@@ -62,15 +60,9 @@ export default function SignUpForm() {
     event.preventDefault();
     if (formData.password === formData.confirmPassword) {
       const user:User = {name: formData.name, email: formData.email, password: formData.password }
-      console.log(user)
       signUpUser(user);
     }
-    console.log(formData);
   }
-
-  // useEffect(() => {
-  //   validateForm();
-  // }, [formData.name, formData.email, formData.password, formData.confirmPassword])
 
   return (
     <form className="bg-white h-fit max-w-[350px] p-7 rounded-lg shadow-lg">

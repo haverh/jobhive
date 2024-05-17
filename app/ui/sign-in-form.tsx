@@ -37,9 +37,9 @@ export default function SignInForm() {
         <div>
           <label htmlFor="password"
             className="mb-2 mt-3 block text-md font-medium text-gray-900">Password</label>
-          <div className="border border-solid border-gray-400 rounded-full flex pr-2">
+          <div className="outline-none border border-solid border-gray-400 rounded-full flex pr-2">
             <input type={visible ? "text" :"password"} id="password" name="password" placeholder="Enter your password"
-              className="pl-3 py-1 rounded-full focus:outline-none"
+              className="pl-3 py-1 rounded-full focus:border-red-600"
               onChange={(e) => { setUserData({...userData, password: e.target.value})}}
               required></input>
             <button onClick={(event) => toggleVisibility(event)}>
