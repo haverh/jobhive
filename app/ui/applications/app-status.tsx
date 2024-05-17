@@ -23,8 +23,8 @@ const statusColors = new Map([
   ["pending", "bg-gray-200"]
 ])
 
-const capitalize = (s) => {
-  return s[0].toUpperCase() + s.slice(1);
+const capitalize = (status:string) => {
+  return status[0].toUpperCase() + status.slice(1);
 }
 
 export default function AppStatus({ status }: { status: string; }) {
