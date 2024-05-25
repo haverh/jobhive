@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction } from "react";
 import { useState, MouseEvent } from "react";
 import { FunnelIcon } from "@heroicons/react/24/solid";
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+import { Button } from "../button";
 import clsx from "clsx";
 
 const sortList = [
@@ -114,7 +115,10 @@ export default function AppFilter() {
     <div className="flex gap-4 justify-end mb-3">
       <SortComponent setSort={setSortValue} />
       <FilterComponent filters={filters} setFilter={setFiltersValues} />
-      <button onClick={(e) => {applyFilters(e)}}>Apply</button>
+      <Button onClick={(e) => {applyFilters(e)}}
+        className='px-3 flex justify-center items-center bg-yellow-400 rounded-lg hover:bg-yellow-500'>
+        Apply
+      </Button>
     </div>
   )
 }
