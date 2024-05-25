@@ -9,8 +9,8 @@ import {
   PencilSquareIcon,
   TrashIcon } from '@heroicons/react/24/solid';
 import AppStatus from './app-status';
-import { fetchApplications } from '@/app/lib/action';
-import { EditApplicationButton, DeleteApplicationButton } from '@/app/ui/applications/buttons';
+import { fetchApplications } from '@/app/lib/data';
+import { JobPostingButton, EditApplicationButton, DeleteApplicationButton } from '@/app/ui/applications/buttons';
 import Link from 'next/link';
 
 
@@ -24,7 +24,7 @@ const statusIcon = (status:string) => {
   }
 }
 
-const tableHeaders = ['Role', 'Company', 'Date Applied', 'Status', ' ', ' '];
+const tableHeaders = ['Role', 'Company', 'Date Applied', 'Status', ' '];
 
 export default async function Table({
   query,
@@ -82,7 +82,7 @@ export default async function Table({
           <tr>
             {tableHeaders.map((header, index) => {
               return (
-                <th key={index} scope="col" className="whitespace-nowrap px-3 py-3">
+                <th key={index} scope="col" className="whitespace-nowrap px-2 py-2">
                   {header}
                 </th>
               )
@@ -95,28 +95,23 @@ export default async function Table({
               key={index}
               className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
             >
-              <td className="whitespace-nowrap px-3 py-3">
-                <div className="flex items-center gap-3">
+              <td className="whitespace-nowrap px-2 py-3">
+                <div className="flex items-center">
                   <p>{application.role}</p>
                 </div>
               </td>
-              <td className="whitespace-nowrap px-3 py-3">
+              <td className="whitespace-nowrap px-2 py-3">
                 {application.company}
               </td>
-              <td className="whitespace-nowrap px-3 py-3">
+              <td className="whitespace-nowrap px-2 py-3">
                 {application.date_applied}
               </td>
-              <td className="whitespace-nowrap px-3 py-3">
+              <td className="whitespace-nowrap px-2 py-3">
                 <AppStatus status={application.status} />
               </td>
-              <td className="whitespace-nowrap px-3 py-3">
-                <a target="_blank" href={application.job_posting}>
-                  <ArrowTopRightOnSquareIcon className='w-5 h-5 text-blue-500' />
-                </a>
-                
-              </td>
-              <td className="whitespace-nowrap py-3 pl-6 pr-3">
-                <div className="flex justify-end gap-3">
+              <td className="whitespace-nowrap px-2 py-3">
+                <div className="flex justify-end items-center gap-3">
+                  <JobPostingButton href={application.job_posting} />
                   <EditApplicationButton appId={application.id} />
                   <DeleteApplicationButton appId={application.id} />
                 </div>

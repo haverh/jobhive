@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { PlusIcon, PencilSquareIcon, TrashIcon } from "@heroicons/react/24/solid"
+import { PlusIcon, PencilSquareIcon, TrashIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid"
 import { deleteApplication } from "@/app/lib/action";
 
 
@@ -13,6 +13,19 @@ export function AddApplicationButton() {
   )
 }
 
+export function JobPostingButton({
+  href
+}: {
+  href: string;
+}) {
+  
+  return (
+    <Link target="_blank" href={href}>
+      <ArrowTopRightOnSquareIcon className='w-5 h-5 text-blue-500' />
+    </Link>
+  )
+}
+
 export function EditApplicationButton({
   appId
 }: {
@@ -21,7 +34,7 @@ export function EditApplicationButton({
 
   return (
     <Link href={`/dashboard/applications/${appId}/edit`} >
-      <PencilSquareIcon className="inline w-4 h-4"/>
+      <PencilSquareIcon className="inline w-5 h-5"/>
     </Link>
   )
 }
