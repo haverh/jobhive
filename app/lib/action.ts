@@ -6,7 +6,6 @@ import { unstable_noStore as noStore } from 'next/cache';
 import { createClient } from '@/utils/supabase/server';
 import type { User, Application } from '@/app/lib/definitions';
 import { cookies } from 'next/headers'
-import { supabase } from '@supabase/auth-ui-shared';
 
 export async function signUpUser(user: User){
   const supabase = createClient();
@@ -58,52 +57,38 @@ export async function signOutUser() {
   const { error } = await supabase.auth.signOut()
 }
 
-const ITEMS_PER_PAGE = 10;
-export async function fetchTotalPages(query: string, sort: string, filters: Array<string>) {
-  noStore();
-
+export async function forgotPassword(email: string) {
   const supabase = createClient();
 
-  const {count, error} = await supabase
-    .from('Applications')
-    .select('*', { count: 'exact', head: true })
-    .filter('status', 'in', `(${filters})`)
-    .or(`role.ilike.*${query}*, company.ilike.*${query}*`)
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: 'http://localhost:3000/reset-password',
+  })
 
-  const totalPages = Math.ceil(Number(count && count/ITEMS_PER_PAGE))
-  return totalPages;
+  console.log("FORGOT PASSWORD -", data, error);
 }
 
-
-export async function fetchApplications(query: string, currentPage: number, sort: string, filters: Array<string>) {
-  noStore();
+export async function updatePassword(password: string, code: string | null) {
   const supabase = createClient();
 
-  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+  console.log("GOT INTO UPDATE PASSWORD")
 
-  console.log(filters)
-  const sortOptions = sort.split(' ');
+  if ( code ) {
+    const {error} = await supabase.auth.exchangeCodeForSession(code);
 
-  let { data, error } = await supabase
-    .from('Applications')
-    .select('*')
-    .filter('status', 'in', `(${filters})`)
-    .or(`role.ilike.*${query}*, company.ilike.*${query}*`)
-    .order(sortOptions[0], {ascending: sortOptions[1] === 'asc'})
-    .range(offset, offset+ITEMS_PER_PAGE - 1)
+    if (error) {
+      return { subdirectory: 'reset-password', parameters: 'message=Unable to reset Password. Link expired!'}
+    }
+  }
 
-  return data;
-}
+  const { error } = await supabase.auth.updateUser({
+    password: password
+  })
 
-export async function fetchApplicationById(id: string) {
-  noStore();
-  const supabase = createClient();
+  if (error) {
+    return { subdirectory: 'reset-password', parameters: 'message=Undable to reset Password. Try again!'}
+  }
 
-  let {data, error} = await supabase
-    .from('Applications')
-    .select('*')
-    .eq('id', id);
-  return data && data[0];
+  return { subdirectory: 'sign-in', parameters: 'message=Your Password has been reset successfully. Sign In.'}
 }
 
 export async function insertApplication(app: Application) {
