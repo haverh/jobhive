@@ -5,7 +5,7 @@ import AppSearch from "@/app/ui/applications/app-search"
 import { AddApplicationButton } from "@/app/ui/applications/buttons"
 import AppFilter from "@/app/ui/applications/app-filters";
 import Pagination from "@/app/ui/applications/pagination";
-import { fetchTotalPages } from "@/app/lib/action";
+import { fetchTotalPages } from "@/app/lib/data";
 
 export default async function Page({
   searchParams,
@@ -33,7 +33,7 @@ export default async function Page({
 
   return(
     <div className="mt-6 flow-root">
-      <div className="inline-block min-w-full align-middle">
+      <div className="mr-6 inline-block min-w-full align-middle">
         <h1 className='pl-2 text-3xl mb-6'>Applications</h1>
         <div className="flex flex-col align-center justify-between lg:flex-row">
           <AppSearch/>

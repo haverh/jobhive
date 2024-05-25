@@ -1,4 +1,4 @@
-import { fetchApplicationById } from "@/app/lib/action";
+import { fetchApplicationById } from "@/app/lib/data";
 import EditApplication from "@/app/ui/applications/edit-app";
 
 export default async function EditPage({ params }: { params: { id: string } }) {
