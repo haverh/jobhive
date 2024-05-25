@@ -57,7 +57,7 @@ export default function SignInForm() {
       </div>
       
       <hr className="my-4 h-[2px] text-gray-500 bg-gray-500"/>
-      <p className="text-sky-500">Forgot Password?</p>
+      <Link href="/reset-password" className="text-sky-500">Forgot Password?</Link>
       <p>Don&apos;t have an account? <Link href="/sign-up" className="text-sky-500">Sign up</Link></p>
     </form>
   )
