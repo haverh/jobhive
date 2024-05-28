@@ -1,9 +1,9 @@
-import SignIn from "../ui/sign-in-form"
+import SignIn from "../ui/auth-ui/sign-in-form"
 
 export default function SignInPage() {
   return (
-    <div className="h-screen flex justify-center items-center">
+    <main className="h-screen flex items-center justify-center">
       <SignIn />
-    </div>
+    </main>
   )
 };

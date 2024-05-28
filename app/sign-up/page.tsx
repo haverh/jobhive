@@ -1,9 +1,9 @@
-import SignUpForm from "../ui/sign-up-form"
+import SignUpForm from "../ui/auth-ui/sign-up-form"
 
 export default function SignUpPage() {
   return (
-    <div className="h-screen flex justify-center items-center">
+    <main className="h-screen flex items-center justify-center">
       <SignUpForm />
-    </div>
+    </main>
   )
 }
