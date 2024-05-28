@@ -1,7 +1,7 @@
 'use client';
 import { useState, MouseEvent } from "react"
 import { EyeIcon, EyeSlashIcon, CheckIcon } from "@heroicons/react/24/solid";
-import { updatePassword } from "../lib/action";
+import { updatePassword } from "../../lib/action";
 import { redirect } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 
@@ -37,14 +37,15 @@ export default function ResetPasswordForm() {
 
   return (
     <form action={resetPassword} className="bg-white h-fit w-fit p-7 rounded-lg shadow-lg">
-      <h1 className="font-bold text-2xl text-center">Reset Password</h1>
+      <h1 className="font-bold text-2xl text-center mb-4">Reset Password</h1>
+      <p className="max-w-[300px] text-sm text-center">Enter a new password to change your password.</p>
       <div>
-        <div>
+        <div className="w-fit">
           <label htmlFor="password"
             className="mb-2 mt-3 block text-md font-medium text-gray-900">Password</label>
-          <div className="outline-none border border-solid border-gray-400 rounded-full flex pr-2">
+          <div className="outline-none border border-solid border-gray-400 rounded-xl flex pr-2">
             <input type={visible[0] ? "text" :"password"} id="password" name="password" placeholder="Enter your password"
-              className="pl-3 py-1 rounded-full focus:border-red-600"
+              className="pl-3 py-1 rounded-xl border-0 focus:ring-0"
               required></input>
             <CheckIcon className="w-5 text-yellow-500" />
             {visible[0] ? 
@@ -53,12 +54,12 @@ export default function ResetPasswordForm() {
           </div>
         </div>
 
-        <div>
+        <div className="w-fit">
           <label htmlFor="confirmPassword"
             className="mb-2 mt-3 block text-md font-medium text-gray-900">Confirm Password</label>
-          <div className="outline-none border border-solid border-gray-400 rounded-full flex pr-2">
+          <div className="outline-none border border-solid border-gray-400 rounded-xl flex pr-2">
             <input type={visible[1] ? "text" :"password"} id="confirmPassword" name="confirmPassword" placeholder="Enter your password again"
-              className="pl-3 py-1 rounded-full focus:border-red-600"
+              className="pl-3 py-1 rounded-xl border-0 focus:ring-0"
               required></input>
             <CheckIcon className="w-5 text-yellow-500" />
             {visible[1] ? 
@@ -69,7 +70,7 @@ export default function ResetPasswordForm() {
       </div>
       <div className="mt-6">
         <button 
-          className="w-full bg-yellow-500 py-2 px-3 rounded-full font-medium hover:bg-yellow-400">
+          className="w-full bg-yellow-400 py-2 px-3 rounded-xl font-medium hover:bg-yellow-300 focus:bg-yellow-500">
           Reset Password
         </button>
       </div>
