@@ -9,11 +9,14 @@ module.exports = {
     extend: {
       colors: {
         yellow: {
-          100: '#FDF7E4',
-          200: '#FFFBDA',
-          300: '#FFEC9E',
-          400: '#FFBB70',
-          500: '#ED9455'
+          100: '#fee9d2',
+          200: '#ffd2a1',
+          300: '#ffbb70',
+          400: '#ffa33f',
+          500: '#ff8c0e',
+          600: '#dc7300',
+          700: '#ab5900',
+          800: '#ab5900'
         },
       },
     },
