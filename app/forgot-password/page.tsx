@@ -1,10 +1,10 @@
-import ForgotPasswordForm from "../ui/forgot-password-form"
+import ForgotPasswordForm from "../ui/auth-ui/forgot-password-form"
 
 export default function ForgotPasswordPage() {
   return (
-    <div className="h-screen flex justify-center items-center">
+    <main className="h-screen flex items-center justify-center">
       <ForgotPasswordForm />
-    </div>
+    </main>
     
   )
 }

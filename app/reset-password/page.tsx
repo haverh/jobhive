@@ -1,13 +1,13 @@
-import ResetPasswordForm from "../ui/reset-password-form";
+import ResetPasswordForm from "../ui/auth-ui/reset-password-form";
 import { redirect } from 'next/navigation'
 import { createClient } from "@/utils/supabase/server";
 
 export default async function ResetPasswordPage() {
 
   return (
-    <div className="h-screen flex justify-center items-center">
+    <main className="h-screen flex items-center justify-center">
       <ResetPasswordForm />
-    </div>
+    </main>
     
   )
 }

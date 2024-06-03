@@ -9,6 +9,7 @@ import {
 import { Application } from '@/app/lib/definitions';
 import { insertApplication } from '@/app/lib/action';
 import { Button } from '../button';
+import Link from 'next/link';
   
 export default function AddApplication() {
   const [applicationForm, setApplicationForm] = useState<Application>({id: '', role:'', company:'', job_posting: '', date_applied: '', status: ''});
@@ -109,8 +110,8 @@ export default function AddApplication() {
         
       </form>
       <div className='flex justify-end md:w-3/5'>
-        <button className='bg-gray-200 px-3 py-2 rounded-lg hover:bg-gray-300 mr-4'>Cancel</button>
-        <Button className='bg-yellow-400 px-3 py-2 rounded-lg hover:bg-yellow-500'
+        <Link href='/dashboard/applications'  className='bg-gray-300 px-3 py-2 rounded-lg hover:bg-gray-200 active:bg-gray-400 mr-4'>Cancel</Link>
+        <Button className='bg-yellow-400 px-3 py-2 rounded-lg hover:bg-yellow-300 active:bg-yellow-500'
           onClick={(e) => {addApp(e)}}>Add Application</Button>
       </div>
     </div>
