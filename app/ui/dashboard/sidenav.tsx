@@ -1,9 +1,14 @@
 import Link from "next/link";
-import NavLinks from "@/app/ui/dashboard/nav-links";
+import { NavLinks, Settings } from "@/app/ui/dashboard/nav-links";
 import ClipBoardLinks from "./clipboard-links";
-import SignOutButton from "../sign-out-button";
+import SignOutButton from "../auth-ui/sign-out-button";
 
-export default function SideNav() {
+export default function SideNav({
+  user
+}: {
+  user: any;
+}) {
+
   return (
     <div className="flex h-full flex-col px-3 py-4 md:px-2">
       <Link
@@ -15,9 +20,13 @@ export default function SideNav() {
         </div>
       </Link>
       <div className="bg-white flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
-        <ClipBoardLinks />
+        <ClipBoardLinks links={user.user_metadata.links} />
+        <hr className="h-[48px] w-[2px] shadow-sm justify-self-center text-gray-300 bg-gray-300 md:h-[1.5px] md:w-full" />
         <NavLinks />
         <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
+        <div>
+          <Settings/>
+        </div>
         <form 
           action={async () => {
             'use server';

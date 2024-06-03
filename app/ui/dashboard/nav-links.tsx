@@ -3,9 +3,11 @@ import {
   UserGroupIcon,
   HomeIcon,
   DocumentDuplicateIcon,
+  Cog8ToothIcon
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import { useSearchParams, usePathname } from 'next/navigation';
 import clsx from 'clsx';
 
 // Map of links to display in the side navigation.
@@ -15,7 +17,7 @@ const links = [
   { name: 'Applications', href: '/dashboard/applications', icon: DocumentDuplicateIcon },
 ];
 
-export default function NavLinks() {
+export function NavLinks() {
   const pathname = usePathname();
   return (
     <>
@@ -26,17 +28,37 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-              "flex h-[48px] grow items-center justify-center rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-yellow-500 md:flex-none md:justify-start md:p-2 md:px-3",
+              "flex h-[48px] grow items-center justify-center rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-yellow-100 hover:text-yellow-500 md:flex-none md:justify-start md:p-2 md:px-3",
               {
-                "bg-sky-100 text-yellow-500": pathname === link.href,
+                "bg-yellow-100 text-yellow-500": pathname === link.href,
               },
             )}
           >
-            <LinkIcon className="w-6" />
+            <LinkIcon className="w-6 h-6" />
             <p className="hidden md:block">{link.name}</p>
           </Link>
         );
       })}
     </>
   );
+}
+
+export function Settings() {
+  const searchParams = useSearchParams();
+  const modal = searchParams.get("modal");
+  
+  return (
+    <Link
+      href='?modal=true&tab=account&task=view'
+      className={clsx(
+        "flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-yellow-100 hover:text-yellow-500 md:flex-none md:justify-start md:p-2 md:px-3",
+        {
+          "bg-yellow-100 text-yellow-500": modal,
+        },
+      )}
+    >
+      <Cog8ToothIcon className="w-6" />
+      <p className="hidden md:block">Settings</p>
+    </Link>
+  )
 }
