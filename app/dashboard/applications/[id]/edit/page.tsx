@@ -3,10 +3,10 @@ import EditApplication from "@/app/ui/applications/edit-app";
 
 export default async function EditPage({ params }: { params: { id: string } }) {
   const appId = params.id;
-  console.log(appId);
+  // console.log(appId);
 
   const application = await fetchApplicationById(appId)
-  console.log(application)
+  // console.log(application)
 
 
   return (

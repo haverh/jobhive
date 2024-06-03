@@ -31,7 +31,7 @@ export default function ApplyTimeline({
   prevWeek: Array<any>;
 }) {
 
-  console.log(thisWeek, prevWeek);
+  // console.log(thisWeek, prevWeek);
 
   const lineOptions = {
     responsive: true,
