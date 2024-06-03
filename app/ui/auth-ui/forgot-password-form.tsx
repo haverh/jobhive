@@ -13,7 +13,7 @@ export default function ForgotPasswordForm() {
 
     const { error } = await supabase.auth.resetPasswordForEmail(
       email,
-      { redirectTo: `${process.env.NEXT_PUBLIC_DOMAIN}/reset-password` }
+      { redirectTo: `${process.env.NEXT_PUBLIC_VERCEL_DOMAIN}/reset-password` }
     )
 
     if ( error ) {

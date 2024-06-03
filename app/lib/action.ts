@@ -16,7 +16,7 @@ export async function signUpUser(user: User){
       email: user.email,
       password: user.password,
       options: {
-        emailRedirectTo: 'http://localhost:3000/sign-in',
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_VERCEL_DOMAIN}/sign-in`,
         data: {
           name: user.name,
           links: [{site: 'linkedin', link: ''}, {site: 'github', link: ''}, {site: 'portfolio', link: ''}],
@@ -62,7 +62,7 @@ export async function forgotPassword(email: string) {
   const supabase = createClient();
 
   const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: 'http://localhost:3000/reset-password',
+    redirectTo: `${process.env.NEXT_PUBLIC_VERCEL_DOMAIN}/reset-password`,
   })
 
   console.log("FORGOT PASSWORD -", data, error);

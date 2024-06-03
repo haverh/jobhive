@@ -4,7 +4,6 @@
 // import { redirect } from 'next/navigation';
 import { unstable_noStore as noStore } from 'next/cache';
 import { createClient } from '@/utils/supabase/server';
-import { create } from 'domain';
 // import type { User, Application } from '@/app/lib/definitions';
 // import { cookies } from 'next/headers';
 
