@@ -32,7 +32,7 @@ export async function fetchApplications(query: string, currentPage: number, sort
 
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
-  console.log(filters)
+  // console.log(filters)
   const sortOptions = sort.split(' ');
 
   let { data, error } = await supabase
@@ -73,7 +73,7 @@ export async function fetchTotalAppliedThisWeek() {
   const supabase = createClient();
 
   const {data, error} = await supabase.rpc('totalappliedthisweek');
-  console.log("Total Applied This Week =>", data);
+  // console.log("Total Applied This Week =>", data);
 
   return data;
 }
@@ -84,7 +84,7 @@ export async function fetchStatusRatios() {
 
   let {data, error} = await supabase.rpc('statusratio');
 
-  console.log('Status Ratio =>', data, error);
+  // console.log('Status Ratio =>', data, error);
 
   return data;  
 }
@@ -119,18 +119,18 @@ export async function fetchStatistics() {
     fetchAppsTimelineThisWeek(),
     fetchAppsTimelinePrevWeek()
   ])
-  console.log(data)
+  // console.log(data)
   const totalApplied = data[0];
   const totalAppliedThisWeek = data[1];
   const statusRatio = data[2];
   const appsThisWeek = data[3];
   const appsPrevWeek = data[4];
   
-  console.log("Total Applied =>", totalApplied);
-  console.log("Total Applied This Week =>", totalAppliedThisWeek);
-  console.log("Status Ratio =>", statusRatio);
-  console.log("Apps This Week =>", appsThisWeek);
-  console.log("Apps Prev Week =>", appsPrevWeek);
+  // console.log("Total Applied =>", totalApplied);
+  // console.log("Total Applied This Week =>", totalAppliedThisWeek);
+  // console.log("Status Ratio =>", statusRatio);
+  // console.log("Apps This Week =>", appsThisWeek);
+  // console.log("Apps Prev Week =>", appsPrevWeek);
 
   return {
     totalApplied,

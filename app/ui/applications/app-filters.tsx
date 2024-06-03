@@ -61,7 +61,7 @@ function FilterComponent({
 
   return (
     <div className="relative">
-      <button onClick={() => {setToggle(!toggle)}} className='bg-gray-400 text-white p-2 h-10 rounded flex items-center gap-2'>
+      <button onClick={() => {setToggle(!toggle)}} className='bg-gray-400 text-white p-2 h-10 rounded-xl flex items-center gap-2'>
         <span>Filter </span>
         <FunnelIcon className="inline w-4 h-4"/>
       </button>
@@ -112,13 +112,15 @@ export default function AppFilter() {
   }
 
   return (
-    <div className="flex gap-4 justify-end mb-3">
+    <div className="w-full flex flex-col sm:flex-row gap-4 justify-end items-end">
       <SortComponent setSort={setSortValue} />
-      <FilterComponent filters={filters} setFilter={setFiltersValues} />
-      <Button onClick={(e) => {applyFilters(e)}}
-        className='px-3 flex justify-center items-center bg-yellow-400 rounded-lg hover:bg-yellow-500'>
-        Apply
-      </Button>
+      <div className="flex gap-2">      
+        <FilterComponent filters={filters} setFilter={setFiltersValues} />
+        <Button onClick={(e) => {applyFilters(e)}}
+          className='px-3 flex justify-center items-center bg-yellow-400 rounded-xl hover:bg-yellow-300 active:bg-yellow-500'>
+          Apply
+        </Button>
+      </div>
     </div>
   )
 }

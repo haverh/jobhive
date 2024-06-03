@@ -6,8 +6,8 @@ import { deleteApplication } from "@/app/lib/action";
 export function AddApplicationButton() {
   return (
     <div className="flex h-16 items-center">
-      <Link href='/dashboard/applications/add' className="flex items-center bg-yellow-400 px-3 py-2 h-10 rounded-lg hover:bg-yellow-500">
-        <p className="inline mr-2">Add Application</p> <PlusIcon className="inline w-4 h-4"/>
+      <Link href='/dashboard/applications/add' className="flex items-center bg-yellow-400 px-3 py-2 h-10 rounded-lg hover:bg-yellow-300 active:bg-yellow-500">
+        <p className="text-sm lg:text-base hidden md:inline mr-2">Add Application</p> <PlusIcon className="inline w-4 h-4"/>
       </Link>
     </div>
   )

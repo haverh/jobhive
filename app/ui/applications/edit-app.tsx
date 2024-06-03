@@ -130,8 +130,8 @@ export default function EditApplication({ application }: { application: Applicat
         
       </form>
       <div className='flex justify-end md:w-3/5'>
-        <Link href='/dashboard/applications' className='bg-gray-200 px-3 py-2 rounded-lg hover:bg-gray-300 mr-4'>Cancel</Link>
-        <Button className='bg-yellow-400 px-3 py-2 rounded-lg hover:bg-yellow-500'
+        <Link href='/dashboard/applications' className='bg-gray-300 px-3 py-2 rounded-lg hover:bg-gray-200 active:bg-gray-400 mr-4'>Cancel</Link>
+        <Button className='bg-yellow-400 px-3 py-2 rounded-lg hover:bg-yellow-300 active:bg-yellow-500'
           onClick={(e) => updateApplicationEvent(e)}>Update Application</Button>
       </div>
     </div>

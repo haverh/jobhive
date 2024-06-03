@@ -24,7 +24,7 @@ const statusIcon = (status:string) => {
   }
 }
 
-const tableHeaders = ['Role', 'Company', 'Date Applied', 'Status', ' '];
+const tableHeaders = ['Role', 'Company', 'Date Applied', 'Status', ''];
 
 export default async function Table({
   query,
@@ -46,80 +46,84 @@ export default async function Table({
   const applications2 = await fetchApplications(query, currentPage, sort, filters);
 
   return (
-    <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
-      <div className="md:hidden">
-        {applications2?.map((application, index) => (
-          <div
-            key={index}
-            className="mb-2 w-full rounded-md bg-white p-4 border border-[red]"
-          >
-            <div className="flex items-center justify-between border-b pb-4">
-              <div>
-                <div className="mb-2 flex items-center">
-                  <p className='font-medium'>{application.role}</p>
+    <div className="mt-6 flow-root">
+      <div className="inline-block min-w-full align-middle">
+        <div className="rounded-lg bg-gray-50 px-2 pb-2 md:pt-0">
+          <div className="md:hidden">
+            {applications2?.map((application, index) => (
+              <div
+                key={index}
+                className="mb-2 w-full rounded-md bg-white p-4 border border-yellow-500"
+              >
+                <div className="flex items-center justify-between border-b pb-4">
+                  <div>
+                    <div className="mb-2 flex items-center">
+                      <p className='font-medium'>{application.role}</p>
+                    </div>
+                    <p className="text-sm text-gray-500">{application.company}</p>
+                  </div>
+                  <AppStatus status={application.status} />
                 </div>
-                <p className="text-sm text-gray-500">{application.company}</p>
+                <div className="flex w-full items-center justify-between pt-4">
+                  <div>
+                    <a target='_blank' href={application.job_posting}>
+                      <ArrowTopRightOnSquareIcon className='w-5 h-5 text-blue-500' />
+                    </a>
+                    <p>{application.date_applied}</p>
+                  </div>
+                  <div className="flex justify-end gap-2">
+                    <button className='mr-2'><PencilSquareIcon className='w-5 h-5' /></button>
+                      <button><TrashIcon className='w-5 h-5 text-red-500' /></button>
+                  </div>
+                </div>
               </div>
-              <AppStatus status={application.status} />
-            </div>
-            <div className="flex w-full items-center justify-between pt-4">
-              <div>
-                <a target='_blank' href={application.job_posting}>
-                  <ArrowTopRightOnSquareIcon className='w-5 h-5 text-blue-500' />
-                </a>
-                <p>{application.date_applied}</p>
-              </div>
-              <div className="flex justify-end gap-2">
-                <button className='mr-2'><PencilSquareIcon className='w-5 h-5' /></button>
-                  <button><TrashIcon className='w-5 h-5' /></button>
-              </div>
-            </div>
+            ))}
           </div>
-        ))}
+          <table className="hidden min-w-full text-gray-900 md:table">
+            <thead className="rounded-lg text-left text-sm font-normal">
+              <tr>
+                {tableHeaders.map((header, index) => {
+                  return (
+                    <th key={index} scope="col" className="whitespace-nowrap px-2 py-2">
+                      {header}
+                    </th>
+                  )
+                })}
+              </tr>
+            </thead>
+            <tbody className="bg-white">
+              {applications2?.map((application, index) => (
+                <tr
+                  key={index}
+                  className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
+                >
+                  <td className="whitespace-nowrap px-2 py-3">
+                    <div className="flex items-center">
+                      <p>{application.role}</p>
+                    </div>
+                  </td>
+                  <td className="whitespace-nowrap px-2 py-3">
+                    {application.company}
+                  </td>
+                  <td className="whitespace-nowrap px-2 py-3">
+                    {application.date_applied}
+                  </td>
+                  <td className="whitespace-nowrap px-2 py-3">
+                    <AppStatus status={application.status} />
+                  </td>
+                  <td className="whitespace-nowrap px-2 py-3">
+                    <div className="flex justify-end items-center gap-3">
+                      <JobPostingButton href={application.job_posting} />
+                      <EditApplicationButton appId={application.id} />
+                      <DeleteApplicationButton appId={application.id} />
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-      <table className="hidden min-w-full text-gray-900 md:table">
-        <thead className="rounded-lg text-left text-sm font-normal">
-          <tr>
-            {tableHeaders.map((header, index) => {
-              return (
-                <th key={index} scope="col" className="whitespace-nowrap px-2 py-2">
-                  {header}
-                </th>
-              )
-            })}
-          </tr>
-        </thead>
-        <tbody className="bg-white">
-          {applications2?.map((application, index) => (
-            <tr
-              key={index}
-              className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
-            >
-              <td className="whitespace-nowrap px-2 py-3">
-                <div className="flex items-center">
-                  <p>{application.role}</p>
-                </div>
-              </td>
-              <td className="whitespace-nowrap px-2 py-3">
-                {application.company}
-              </td>
-              <td className="whitespace-nowrap px-2 py-3">
-                {application.date_applied}
-              </td>
-              <td className="whitespace-nowrap px-2 py-3">
-                <AppStatus status={application.status} />
-              </td>
-              <td className="whitespace-nowrap px-2 py-3">
-                <div className="flex justify-end items-center gap-3">
-                  <JobPostingButton href={application.job_posting} />
-                  <EditApplicationButton appId={application.id} />
-                  <DeleteApplicationButton appId={application.id} />
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
     </div>
   )
 }

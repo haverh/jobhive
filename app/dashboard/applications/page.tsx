@@ -32,17 +32,17 @@ export default async function Page({
   // console.log("FILTERS => ", filters);
 
   return(
-    <div className="mt-6 flow-root">
-      <div className="mr-6 inline-block min-w-full align-middle">
-        <h1 className='pl-2 text-3xl mb-6'>Applications</h1>
-        <div className="flex flex-col align-center justify-between lg:flex-row">
-          <AppSearch/>
-          <AddApplicationButton/>
-        </div>
-        <AppFilter />
-        <Table query={query} currentPage={currentPage} sort={sort} filters={filters} />
-        <Pagination totalPages={totalPages}/>
+    <div className="w-full">
+      <h1 className='flex w-full items-center justify-between text-xl'>Applications</h1>
+      <div className="h-12 mt-4 flex items-center justify-between gap-2 md:mt-8">
+        <AppSearch/>
+        <AddApplicationButton/>
       </div>
+      <div className="w-full mt-4 flex items-center items-end gap-2 md:mt-8">
+        <AppFilter />
+      </div>
+      <Table query={query} currentPage={currentPage} sort={sort} filters={filters} />
+      <Pagination totalPages={totalPages}/>
     </div>
   )
 }
