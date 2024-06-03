@@ -13,9 +13,16 @@ export type Application = {
   status: string;
 }
 
+export type Links = {
+  linkedin: string;
+  github: string;
+  portfolio: string;
+}
+
 export interface SignUpFormData {
   name: string;
   email: string;
   password: string;
   confirmPassword: string;
 }
+

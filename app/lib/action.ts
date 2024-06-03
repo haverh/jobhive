@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { unstable_noStore as noStore } from 'next/cache';
 import { createClient } from '@/utils/supabase/server';
-import type { User, Application } from '@/app/lib/definitions';
+import type { User, Application, Links } from '@/app/lib/definitions';
 import { cookies } from 'next/headers'
 
 export async function signUpUser(user: User){
@@ -19,6 +19,7 @@ export async function signUpUser(user: User){
         emailRedirectTo: 'http://localhost:3000/sign-in',
         data: {
           name: user.name,
+          links: [{site: 'linkedin', link: ''}, {site: 'github', link: ''}, {site: 'portfolio', link: ''}],
         }
       }
     }
@@ -70,7 +71,7 @@ export async function forgotPassword(email: string) {
 export async function updatePassword(password: string, code: string | null) {
   const supabase = createClient();
 
-  console.log("GOT INTO UPDATE PASSWORD")
+  // console.log("GOT INTO UPDATE PASSWORD")
 
   if ( code ) {
     const {error} = await supabase.auth.exchangeCodeForSession(code);
@@ -126,7 +127,7 @@ export async function updateApplication(app: Application) {
   noStore();
   const supabase = createClient();
 
-  console.log(app);
+  // console.log(app);
 
   const {data, error} = await supabase
     .from('Applications')
@@ -166,4 +167,23 @@ export async function deleteApplication(id: string) {
 
   revalidatePath('/', 'layout')
   redirect('/dashboard/applications')  
+}
+
+export async function updateLinks(links: Links) {
+  console.log("IN UPDATE LINKS ", links)
+  const supabase = createClient();
+
+  const { error } = await supabase.auth.updateUser({
+    data: {
+      links: {linkedin: links.linkedin, github: links.github, portfolio: links.portfolio}
+    }
+  })
+
+  if ( error ) {
+    console.log(error)
+    redirect('/error')
+  }
+  
+
+
 }
