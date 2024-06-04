@@ -1,4 +1,5 @@
 'use client';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import LinkedInLogo from '@/public/linkedin-black-128.png';
 import GitHubLogo from '@/public/github-logo.png';
@@ -27,15 +28,22 @@ export default function ClipBoardLinks({
 }: {
   links: any
 }) {
-  console.log(links['linkedin'])
+  const [noLinks, setNoLinks] = useState(true);
+  
+  useEffect(() => {
+    if (links.linkedin.length > 0 || links.github.length > 0 || links.portfolio.length > 0) {
+      setNoLinks(false)
+    }
+  },[links])
+
   return (
     <div className="flex gap-2 md:flex-col">
       {logosClipboards.map((clip) => {
         const alt = `${clip.name} Brand/Logo`;
         const type = clip.name.toLowerCase()
-        console.log(links[type].length)
 
         if ( links[type].length > 0 ) {
+          
           return (
             <button 
               key={clip.name}
@@ -57,6 +65,9 @@ export default function ClipBoardLinks({
           );
         }
       })}
+      {noLinks && <div className='py-2 px-4 text-center'>
+        <h3>Setup up your links at <b>Settings &gt; Links</b></h3>
+      </div>}
     </div>
   )
 }

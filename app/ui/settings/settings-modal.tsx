@@ -16,7 +16,7 @@ export default function Modal({
   const tab = searchParams.get("tab");
   const pathname = usePathname(); 
 
-  console.log("FROM MODAL", user);
+  // console.log("FROM MODAL", user);
 
   return (
     <>
