@@ -6,6 +6,8 @@ import { AddApplicationButton } from "@/app/ui/applications/buttons"
 import AppFilter from "@/app/ui/applications/app-filters";
 import Pagination from "@/app/ui/applications/pagination";
 import { fetchTotalPages } from "@/app/lib/data";
+import { Suspense } from "react";
+import Loading from "@/app/ui/loading";
 
 export default async function Page({
   searchParams,
@@ -41,8 +43,10 @@ export default async function Page({
       <div className="w-full mt-4 flex items-center items-end gap-2 md:mt-8">
         <AppFilter />
       </div>
-      <Table query={query} currentPage={currentPage} sort={sort} filters={filters} />
-      <Pagination totalPages={totalPages}/>
+      <Suspense fallback={<Loading />}>
+        <Table query={query} currentPage={currentPage} sort={sort} filters={filters} />
+        <Pagination totalPages={totalPages}/>
+      </Suspense>
     </div>
   )
 }
