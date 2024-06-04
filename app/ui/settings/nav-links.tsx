@@ -39,7 +39,7 @@ export function SettingsNavLinks() {
             )}
           >
             <LinkIcon className="w-6 h-6" />
-            <p className="hidden md:block">{link.name}</p>
+            <p className="">{link.name}</p>
           </Link>
         );
       })}

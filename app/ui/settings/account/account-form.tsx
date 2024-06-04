@@ -14,7 +14,7 @@ export default function AccountForm({
 
   return (
     <div className="bg-white h-full rounded-b-xl">
-      <div className="h-full w-full flex">
+      <div className="h-full w-full flex flex-col lg:flex-row">
         <SubNav />
         <div className="flex-grow p-4 overflow-y-scroll">
           {task === 'view' && <Profile user={user} />}

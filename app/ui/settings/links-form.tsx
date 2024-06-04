@@ -24,9 +24,9 @@ export default function LinksForm({
   }
 
   return (
-    <div className="p-4 bg-white h-full rounded-b-xl md:p-8">
+    <div className="px-4 py-8 bg-white h-full rounded-b-xl md:p-8">
       <div className="flex justify-center">
-        <form className="w-2/3 px-8 py-4 rounded-xl bg-gray-100">
+        <form className="w-full px-4 min-w-[250px] max-w-[450px] rounded-xl bg-gray-100 md: p-4">
           <div>
             <label htmlFor="linkedin-url"
               className="mb-1 mt-2 block text-md font-medium text-gray-900">LinkedIn URL</label>
