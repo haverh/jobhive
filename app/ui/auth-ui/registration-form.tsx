@@ -4,16 +4,16 @@ import { useState, useEffect, MouseEvent } from "react"
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import { EyeIcon, EyeSlashIcon, ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import { SignUpFormData, User } from "../../lib/definitions";
-import { signUpUser } from "@/app/lib/action";
+import { RegistrationFormData, User } from "../../lib/definitions";
+import { registerUser } from "@/app/lib/action";
 import clsx from "clsx";
 
-export default function SignUpForm() {
+export default function RegistrationForm() {
   const [visible, setVisible] = useState<[boolean, boolean]>([false, false]);
   const [openLinks, setOpenLinks] = useState(false);
-  const [formData, setFormData] = useState<SignUpFormData>({name: '', email: '', password: '', confirmPassword: ''});
+  const [formData, setFormData] = useState<RegistrationFormData>({name: '', email: '', password: '', confirmPassword: ''});
   const [missmatch, setMissmatch] = useState(false);
-  const [errors, setErrors] = useState<SignUpFormData>({name: '', email: '', password: '', confirmPassword: ''});
+  const [errors, setErrors] = useState<RegistrationFormData>({name: '', email: '', password: '', confirmPassword: ''});
   
   const togglePassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -30,7 +30,7 @@ export default function SignUpForm() {
   }
 
   const validateForm = () => {
-    let errors:SignUpFormData = {name: '', email: '', password: '', confirmPassword: ''};
+    let errors:RegistrationFormData = {name: '', email: '', password: '', confirmPassword: ''};
 
     if (!formData.name) { 
       errors.name = 'Name is required.'; 
@@ -61,13 +61,13 @@ export default function SignUpForm() {
     event.preventDefault();
     if (formData.password === formData.confirmPassword) {
       const user:User = {name: formData.name, email: formData.email, password: formData.password }
-      signUpUser(user);
+      registerUser(user);
     }
   }
 
   return (
     <form className="bg-white min-w-[300px] max-w-[350px] p-4 rounded-lg shadow-lg">
-      <h1 className="font-bold text-2xl text-center">Sign Up</h1>
+      <h1 className="font-bold text-2xl text-center">Register</h1>
       <div className="pb-4">
         <div>
           <label htmlFor="name"
@@ -177,7 +177,7 @@ export default function SignUpForm() {
 
       <div className="mt-6 flex justify-center">
         <button type="submit" className="w-full bg-yellow-400 py-2 px-3 rounded-xl font-medium hover:bg-yellow-300 active:bg-yellow-500"
-          onClick={(e) => {submitForm(e)}}>Sign Up</button>
+          onClick={(e) => {submitForm(e)}}>Register</button>
       </div>
 
       <hr className="my-4 h-[2px] text-gray-500 bg-gray-500"/>

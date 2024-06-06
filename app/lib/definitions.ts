@@ -19,7 +19,7 @@ export type Links = {
   portfolio: string;
 }
 
-export interface SignUpFormData {
+export interface RegistrationFormData {
   name: string;
   email: string;
   password: string;

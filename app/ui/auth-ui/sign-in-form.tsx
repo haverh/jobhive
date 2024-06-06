@@ -60,7 +60,7 @@ export default function SignInForm() {
       
       <hr className="my-4 h-[2px] text-gray-500 bg-gray-500"/>
       <Link href="/reset-password" className="text-yellow-500">Forgot Password?</Link>
-      <p>Don&apos;t have an account? <Link href="/sign-up" className="text-yellow-500">Sign up</Link></p>
+      <p>Don&apos;t have an account? <Link href="/register" className="text-yellow-500">Register</Link></p>
     </form>
   )
 };

@@ -7,7 +7,7 @@ import { createClient } from '@/utils/supabase/server';
 import type { User, Application, Links } from '@/app/lib/definitions';
 import { cookies } from 'next/headers'
 
-export async function signUpUser(user: User){
+export async function registerUser(user: User){
   const supabase = createClient();
 
   // Sign Up with email
