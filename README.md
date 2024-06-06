@@ -94,6 +94,9 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 ### Built With
 
 * [![Next][Next.js]][Next-url]
+* [![NPM][Npmjs.com]][Npm-url]
+* [![Supabase][Supabase.com]][Supabase-url]
+* [![Node][Node.js]][Node-url]
 <!-- * [![React][React.js]][React-url]
 * [![Vue][Vue.js]][Vue-url]
 * [![Angular][Angular.io]][Angular-url]
@@ -248,3 +251,9 @@ Project Link: [https://github.com/haverh/jobhive](https://github.com/haverh/jobh
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
+[Npmjs.com]: https://img.shields.io/badge/npm-DC2D35?style=for-the-badge&logo=npm&logoColor=white
+[Npm-url]: https://www.npmjs.com
+[Supabase.com]: https://img.shields.io/badge/supabase-1C1C1C?style=for-the-badge&logo=supabase&logoColor=3CCF90
+[Supabase-url]: https://supabase.com
+[Node.js]: https://img.shields.io/badge/nodejs-1C1C1C?style=for-the-badge&logo=node.js&logoColor=63B447
+[Node-url]: https://nodejs.org/en
