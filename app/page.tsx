@@ -1,99 +1,51 @@
-// import Image from "next/image";
-// import styles from "./page.module.css";
+import Image from "next/image";
+import styles from "./page.module.css";
+import { Button } from "./ui/button";
+import { JetBrains_Mono } from "next/font/google";
+import SignInButton from "./ui/auth-ui/sign-in-button";
+import RegisterButton from "./ui/auth-ui/register-button";
+
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+})
+
 
 export default function Home() {
   return (
-    // <main className={styles.main}>
-    //   <div className={styles.description}>
-    //     <p>
-    //       Get started by editing&nbsp;
-    //       <code className={styles.code}>app/page.tsx</code>
-    //     </p>
-    //     <div>
-    //       <a
-    //         href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-    //         target="_blank"
-    //         rel="noopener noreferrer"
-    //       >
-    //         By{" "}
-    //         <Image
-    //           src="/vercel.svg"
-    //           alt="Vercel Logo"
-    //           className={styles.vercelLogo}
-    //           width={100}
-    //           height={24}
-    //           priority
-    //         />
-    //       </a>
-    //     </div>
-    //   </div>
+    <main className="flex flex-col min-h-screen px-28 py-16">
+      <div className="flex justify-between">
+        <div>
+          <p className="font-bold text-3xl">JobHive</p>
+        </div>
+        <div className="flex gap-2">
+          <SignInButton />
+          <RegisterButton />
+        </div>
+      </div>
 
-    //   <div className={styles.center}>
-    //     <Image
-    //       className={styles.logo}
-    //       src="/next.svg"
-    //       alt="Next.js Logo"
-    //       width={180}
-    //       height={37}
-    //       priority
-    //     />
-    //   </div>
-
-    //   <div className={styles.grid}>
-    //     <a
-    //       href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-    //       className={styles.card}
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       <h2>
-    //         Docs <span>-&gt;</span>
-    //       </h2>
-    //       <p>Find in-depth information about Next.js features and API.</p>
-    //     </a>
-
-    //     <a
-    //       href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-    //       className={styles.card}
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       <h2>
-    //         Learn <span>-&gt;</span>
-    //       </h2>
-    //       <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-    //     </a>
-
-    //     <a
-    //       href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-    //       className={styles.card}
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       <h2>
-    //         Templates <span>-&gt;</span>
-    //       </h2>
-    //       <p>Explore starter templates for Next.js.</p>
-    //     </a>
-
-    //     <a
-    //       href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-    //       className={styles.card}
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       <h2>
-    //         Deploy <span>-&gt;</span>
-    //       </h2>
-    //       <p>
-    //         Instantly deploy your Next.js site to a shareable URL with Vercel.
-    //       </p>
-    //     </a>
-    //   </div>
-    // </main>
-    <main>
-      <div>
-        MAIN PAGE
+      {/* <div className={styles.center}> */}
+      <div className="flex flex-grow w-full h-full gap-20 py-32">
+        <div className="w-1/2">
+          <div className={`${jetbrains.className} text-6xl font-bold`}>
+            <p className="w-fit mb-4">Simplify,</p>
+            <p className="w-fit mb-4">Organize,</p>
+            <p className="w-fit mb-8">Track<span className="text-yellow-300">with</span></p>
+            <p className="w-fit mb-8">JobHive</p>
+          </div>
+          <hr className="h-[4px] w-full bg-black mb-4" />
+          <div>
+            <p>
+              The only job application management tool you need. Say goodbye to the chaos of tracking your job applications.
+              Streamline your job search process and stay organized every step of the way.
+            </p>
+          </div>
+        </div>
+        <div className="flex justify-center items-center w-1/2">
+          <Image src="https://img.freepik.com/free-photo/cute-ai-generated-cartoon-bunny_23-2150288883.jpg?t=st=1717564958~exp=1717568558~hmac=8263fed64594674386f8185f1b1a517dbac0837e9f9b70fb8633db9d587ba7dd&w=826"
+            width={500} height={500} alt="Placeholder image of animated bunny" />
+        </div>
+        
       </div>
     </main>
   );
