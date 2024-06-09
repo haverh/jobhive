@@ -5,23 +5,34 @@ import {
   XMarkIcon,
   ClockIcon, 
   ChatBubbleBottomCenterIcon,
-  DocumentCheckIcon,} from '@heroicons/react/24/solid';
+  DocumentCheckIcon,
+  } from '@heroicons/react/24/solid';
 import { Application } from '@/app/lib/definitions';
 import { insertApplication } from '@/app/lib/action';
 import { Button } from '../button';
 import Link from 'next/link';
+import { hasEmptyField } from '@/app/lib/action';
+import EmptyFieldError from './empty-field-error';
   
 export default function AddApplication() {
-  const [applicationForm, setApplicationForm] = useState<Application>({id: '', role:'', company:'', job_posting: '', date_applied: '', status: ''});
+  const [applicationForm, setApplicationForm] = useState<Application>({id: '-1', role:'', company:'', job_posting: '', date_applied: '', status: ''});
+  const [error, setError] = useState(false);
   const maxDate = new Date().toISOString().split("T")[0];
 
-  const addApp = (event: MouseEvent<HTMLButtonElement>) => {
+  const addApp = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    insertApplication(applicationForm);
+
+    if ( await hasEmptyField(applicationForm) ) {
+      setError(true);
+    } else {
+      setError(false);
+      insertApplication(applicationForm);
+    }
   }
 
   return (
     <div className='flex flex-col items-center'>
+      {error && <EmptyFieldError setDisplay={setError} />}
       <h1 className='pl-2 text-3xl md:w-4/5 lg:w-3/5 mb-6'>Applications / Add</h1>
       <form className='md:w-4/5 lg:w-3/5'>
         <div className='pl-2 mb-4'>

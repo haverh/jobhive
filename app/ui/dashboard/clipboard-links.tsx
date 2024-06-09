@@ -28,11 +28,13 @@ export default function ClipBoardLinks({
 }: {
   links: any
 }) {
-  const [noLinks, setNoLinks] = useState(true);
+  const [noLinks, setNoLinks] = useState(false);
   
   useEffect(() => {
-    if (links.linkedin.length > 0 || links.github.length > 0 || links.portfolio.length > 0) {
-      setNoLinks(false)
+    if (links.linkedin?.length > 0 || links.github?.length > 0 || links.portfolio?.length > 0) {
+      setNoLinks(false);
+    } else {
+      setNoLinks(true);
     }
   },[links])
 
@@ -41,13 +43,14 @@ export default function ClipBoardLinks({
       {logosClipboards.map((clip) => {
         const alt = `${clip.name} Brand/Logo`;
         const type = clip.name.toLowerCase()
+        // print(link)
 
-        if ( links[type].length > 0 ) {
+        if ( links[type]?.length > 0 ) {
           
           return (
             <button 
               key={clip.name}
-              className="w-[48px] h-[48px] bg-white flex justify-center items-center rounded hover:bg-yellow-100 md:w-full"
+              className="h-[40px] p-2 bg-white flex justify-center items-center rounded hover:bg-yellow-100 md:h-[48px]"
               onClick={() => copyLink(links[type])}
             >
               {clip.name !== 'Portfolio' ? <Image src={clip.logo} alt={alt}
@@ -57,8 +60,8 @@ export default function ClipBoardLinks({
               /> : <p className='w-[70px] font-bold hidden md:block'>Portfolio</p>}
 
               <Image src={clip.icon} alt={alt}
-                width={35}
-                height={35}
+                width={30}
+                height={30}
                 className='md:hidden'
               />
             </button>

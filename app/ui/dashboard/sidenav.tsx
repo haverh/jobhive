@@ -21,7 +21,7 @@ export default function SideNav({
       </Link>
       <div className="bg-white flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
         <ClipBoardLinks links={user.user_metadata.links} />
-        <hr className="h-[48px] w-[2px] shadow-sm justify-self-center text-gray-300 bg-gray-300 md:h-[1.5px] md:w-full" />
+        <hr className="h-[40px] w-[2px] shadow-sm justify-self-center text-gray-300 bg-gray-300 md:h-[1.5px] md:w-full" />
         <NavLinks />
         <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
         <div>

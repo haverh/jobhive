@@ -138,9 +138,9 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    NEXT_PUBLIC_SUPABASE_URL=REDACTED
    NEXT_PUBLIC_SUPABASE_KEY=REDACTED
-   NEXT_PUBLIC_DOMAIN=http://localhost:3000
+   NEXT_PUBLIC_VERCEL_DOMAIN=http://localhost:3000
    ```
-5. Replace all instances of `NEXT_PUBLIC_VERCEL_DOMAIN` with `NEXT_PUBLIC_DOMAIN`
+5. Replace all instances of `NEXT_PUBLIC_VERCEL_DOMAIN` with `NEXT_PUBLIC_VERCEL_DOMAIN`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
