@@ -21,7 +21,7 @@ export default function StatusRatio({
   statusratio: Array<any>;
 }) {
 
-
+  console.log(statusratio)
   const pieData = {
     // labels: ['Pending', 'Rejected', 'Interviewed', 'Offered', 'Accepted'],
     labels: statusratio.map((obj) => obj.status),

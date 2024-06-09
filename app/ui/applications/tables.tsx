@@ -27,11 +27,13 @@ const statusIcon = (status:string) => {
 const tableHeaders = ['Role', 'Company', 'Date Applied', 'Status', ''];
 
 export default async function Table({
+  id,
   query,
   currentPage,
   sort,
   filters,
 }: {
+  id: string;
   query: string;
   currentPage: number;
   sort: string;
@@ -43,7 +45,7 @@ export default async function Table({
   console.log("SORT => ", sort);
   console.log("FILTERS => ", filters);
 
-  const applications2 = await fetchApplications(query, currentPage, sort, filters);
+  const applications2 = await fetchApplications(id, query, currentPage, sort, filters);
 
   return (
     <div className="mt-6 flow-root">

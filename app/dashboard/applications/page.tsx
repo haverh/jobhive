@@ -8,6 +8,7 @@ import Pagination from "@/app/ui/applications/pagination";
 import { fetchTotalPages } from "@/app/lib/data";
 import { Suspense } from "react";
 import Loading from "@/app/ui/loading";
+import { createClient } from "@/utils/supabase/server";
 
 export default async function Page({
   searchParams,
@@ -19,6 +20,9 @@ export default async function Page({
     filters?: string;
   };
 }) {
+  const supabase = createClient()
+  const { data, error } = await supabase.auth.getUser()
+  const {id} =  data.user!;
 
   // const [params, setParams] = useState();
   const query = searchParams?.query || '';
@@ -26,7 +30,7 @@ export default async function Page({
   const sort = searchParams?.sort || 'date_applied desc';
   const filters: Array<string> = searchParams?.filters && JSON.parse(searchParams?.filters!) || ['pending', 'rejected', 'interviewed', 'offered', 'accepted'];
 
-  const totalPages = Number(await fetchTotalPages(query, sort, filters));
+  const totalPages = Number(await fetchTotalPages(id, query, sort, filters));
 
   // console.log("QUERY => ", query);
   // console.log("CURRENT PAGE => ", currentPage);
@@ -44,7 +48,7 @@ export default async function Page({
         <AppFilter />
       </div>
       <Suspense fallback={<Loading />}>
-        <Table query={query} currentPage={currentPage} sort={sort} filters={filters} />
+        <Table id={id} query={query} currentPage={currentPage} sort={sort} filters={filters} />
         <Pagination totalPages={totalPages}/>
       </Suspense>
     </div>
