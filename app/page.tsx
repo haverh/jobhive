@@ -4,6 +4,8 @@ import { Button } from "./ui/button";
 import { JetBrains_Mono } from "next/font/google";
 import SignInButton from "./ui/auth-ui/sign-in-button";
 import RegisterButton from "./ui/auth-ui/register-button";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
 const jetbrains = JetBrains_Mono({
   subsets: ['latin'],
@@ -11,7 +13,16 @@ const jetbrains = JetBrains_Mono({
 })
 
 
-export default function Home() {
+export default async function Home() {
+  const supabase = createClient()
+
+  const { data, error } = await supabase.auth.getUser()
+  
+  if (!error || data?.user) {
+    redirect('/dashboard')
+  }
+
+
   return (
     <main className="flex flex-col min-h-screen px-28 py-16">
       <div className="flex justify-between">
