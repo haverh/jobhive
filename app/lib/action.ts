@@ -96,15 +96,10 @@ export async function insertApplication(app: Application) {
   noStore();
   const supabase = createClient();
 
-  const cookieStore = cookies();
-  const authCookie = cookieStore.get(`sb-${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_REF}-auth-token`);
-  const authCookieValue = JSON.parse(authCookie?.value!);
-  const user_id = authCookieValue?.user.id;
-
   const {data, error} = await supabase
     .from('Applications')
     .insert([
-      {user_id: user_id, 
+      {user_id: app.id, 
         date_applied: app.date_applied, 
         role: app.role, 
         company: app.company,

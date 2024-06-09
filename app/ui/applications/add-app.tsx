@@ -14,8 +14,12 @@ import Link from 'next/link';
 import { hasEmptyField } from '@/app/lib/action';
 import EmptyFieldError from './empty-field-error';
   
-export default function AddApplication() {
-  const [applicationForm, setApplicationForm] = useState<Application>({id: '-1', role:'', company:'', job_posting: '', date_applied: '', status: ''});
+export default function AddApplication({
+  id
+}: {
+  id: string;
+}) {
+  const [applicationForm, setApplicationForm] = useState<Application>({id: id, role:'', company:'', job_posting: '', date_applied: '', status: ''});
   const [error, setError] = useState(false);
   const maxDate = new Date().toISOString().split("T")[0];
 
