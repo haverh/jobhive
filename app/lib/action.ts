@@ -187,3 +187,15 @@ export async function updateLinks(links: Links) {
 
 
 }
+
+
+// Non-database related
+export async function hasEmptyField(obj: any) {
+  for (const prop in obj) {
+    if ( obj[prop].length === 0 ) {
+      console.log(obj[prop], obj[prop].length)
+      return true;
+    }
+  }
+  return false;
+}
