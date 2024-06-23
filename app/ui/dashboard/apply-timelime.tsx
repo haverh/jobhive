@@ -48,7 +48,7 @@ export default function ApplyTimeline({
   };
   
   const lineData = {
-    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',],
     datasets: [
       {
         label: 'This Week',
