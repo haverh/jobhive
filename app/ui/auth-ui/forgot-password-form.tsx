@@ -1,20 +1,15 @@
 import Link from "next/link";
-import { createClient } from "@/utils/supabase/server";
+import { forgotPassword } from "@/app/lib/action";
 import { redirect } from 'next/navigation';
 
 export default function ForgotPasswordForm() {
 
-  const forgotPassword = async (formData: FormData) => {
-    'use server';
-
+  const forgotPasswordFn = async (formData: FormData) => {
+    "use server";
     const email = formData.get('email') as string;
+    console.log("INTO FUNCTION", email)
 
-    const supabase = createClient();
-
-    const { error } = await supabase.auth.resetPasswordForEmail(
-      email,
-      { redirectTo: `${process.env.NEXT_PUBLIC_VERCEL_DOMAIN}/reset-password` }
-    )
+    const { error } = await forgotPassword(email);
 
     if ( error ) {
       redirect('/forgot-password?message=Could not authenticate user')
@@ -24,7 +19,7 @@ export default function ForgotPasswordForm() {
   }
 
   return (
-    <form action={forgotPassword} className="bg-white h-fit w-fit p-7 rounded-lg shadow-lg">
+    <form action={forgotPasswordFn} className="bg-white h-fit w-fit p-7 rounded-lg shadow-lg">
       <h1 className="font-bold text-2xl text-center mb-8">Forgot Password</h1>
       <div>
         <div>
