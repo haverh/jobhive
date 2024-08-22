@@ -6,7 +6,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
+import { Pie, Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(
   ArcElement,
@@ -15,13 +15,26 @@ ChartJS.register(
   Legend
 );
 
+const statusColors = new Map([
+  ["rejected", "bg-red-200"],
+  ["accepted", "bg-green-200"],
+  ["offered", "bg-blue-200"],
+  ["interviewed", "bg-yellow-200"],
+  ["pending", "bg-gray-200"]
+])
+
 export default function StatusRatio({
   statusratio,
 }: {
   statusratio: Array<any>;
 }) {
 
-  console.log(statusratio)
+  console.log("status ratio",  statusratio)
+  const updatedStatusRatio = statusratio.forEach((obj) => {
+    console.log(obj)
+  })
+
+
   const pieData = {
     // labels: ['Pending', 'Rejected', 'Interviewed', 'Offered', 'Accepted'],
     labels: statusratio.map((obj) => obj.status),
@@ -31,18 +44,20 @@ export default function StatusRatio({
         // data: [12, 19, 3, 5, 2],
         data: statusratio.map((obj) => obj.count),
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
+          'rgba(153, 102, 255, 0.4)',
+          'rgba(255, 99, 132, 0.4)',
+          // 'rgba(255, 204, 0, 0.4)',
+          'rgba(191, 192, 194, 0.4',
+          'rgba(54, 162, 235, 0.4)',
+          'rgba(50, 205, 50, 0.4)',
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
+          'rgba(255, 99, 132, 1)',
+          // 'rgba(255, 204, 0, 1)',
+          'rgba(191, 192, 194, 1',
+          'rgba(54, 162, 235, 1)',
+          'rgba(50, 205, 50, 1)',
         ],
         borderWidth: 1,
       },
@@ -51,11 +66,12 @@ export default function StatusRatio({
 
 
   return (
-    <div className="flex w-full items-center justify-center bg-blue-200 text-center text-4xl rounded-xl 
+    <div className="flex w-full items-center justify-center bg-[#e4eafd] text-center text-4xl rounded-xl 
       col-span-1 
       sm:col-span-4
       lg:col-span-4 ">
-      <Pie data={pieData} className='max-w-[100%] max-h-[400px]' />
+      {/* <Pie data={pieData} className='max-w-[100%] max-h-[400px]' /> */}
+      <Doughnut data={pieData} className='max-w-[100%] max-h-[400px]' />
     </div>
   )
 }

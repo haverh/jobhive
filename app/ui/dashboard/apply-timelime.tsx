@@ -48,7 +48,7 @@ export default function ApplyTimeline({
   };
   
   const lineData = {
-    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',],
+    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     datasets: [
       {
         label: 'This Week',
@@ -100,7 +100,7 @@ export default function ApplyTimeline({
   };
 
   return (
-    <div className="flex w-full items-center justify-center bg-blue-200 text-center text-4xl rounded-xl 
+    <div className="flex w-full items-center justify-center bg-[#e4eafd] text-center text-4xl rounded-xl 
       col-span-1 
       sm:col-span-4
       lg:col-span-8">
