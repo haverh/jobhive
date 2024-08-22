@@ -19,7 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="min-h-full">
-      <body className={`${inter.className} antialiased min-h-full`}>{children}</body>
+      <body className={`${inter.className} antialiased min-h-full`}>{children}
+      <script
+        defer
+        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_PLACES_API}&libraries=places`}
+      ></script>
+      </body>
     </html>
   );
 }
