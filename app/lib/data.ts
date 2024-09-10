@@ -15,9 +15,15 @@ export async function fetchTotalPages(id:string, query: string, sort: string, fi
 
   const supabase = createClient();
   const cookieStore = cookies();
+  console.log(cookieStore)
   const authCookie = cookieStore.get(`sb-${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_REF}-auth-token`);
   console.log("YESSSSSSSSS", authCookie)
-  // const authCookieValue = JSON.parse(authCookie?.value!);
+  // const authValue = JSON.parse(authCookie?.value!)
+  // console.log("ACCESS_TOKEN:", authValue.access_token)
+  // console.log("TOKEN_TYPE:", authValue.token_type)
+  // console.log("EXPIRES_IN:", authValue.expires_in)
+  // console.log("EXPIRES_AT:", authValue.expires_at)
+  // console.log("REFRESH_TOKEN:", authValue.refresh_token)
   // const user_id = authCookieValue?.user.id;
 
   const {count, error} = await supabase
@@ -116,6 +122,16 @@ export async function fetchAppsTimelinePrevWeek(id: string) {
   return data;  
 }
 
+export async function fetchAppCountByMonth(id: String) {
+  noStore();
+  const supabase = createClient();
+
+  const {data, error} = await supabase.rpc('appsbymonth', {uid: id});
+  // console.log('Applications Applied By Month =>', data, error)
+
+  return data;
+}
+
 export async function fetchStatistics(id: string) {
   noStore();
   
@@ -124,7 +140,8 @@ export async function fetchStatistics(id: string) {
     fetchTotalAppliedThisWeek(id),
     fetchStatusRatios(id),
     fetchAppsTimelineThisWeek(id),
-    fetchAppsTimelinePrevWeek(id)
+    fetchAppsTimelinePrevWeek(id),
+    fetchAppCountByMonth(id)
   ])
   // console.log(data)
   const totalApplied = data[0];
@@ -132,6 +149,7 @@ export async function fetchStatistics(id: string) {
   const statusRatio = data[2];
   const appsThisWeek = data[3];
   const appsPrevWeek = data[4];
+  const appCountByMonth = data[5]
   
   // console.log("Total Applied =>", totalApplied);
   // console.log("Total Applied This Week =>", totalAppliedThisWeek);
@@ -144,6 +162,7 @@ export async function fetchStatistics(id: string) {
     totalAppliedThisWeek,
     statusRatio,
     appsThisWeek,
-    appsPrevWeek
+    appsPrevWeek,
+    appCountByMonth
   }
 }
