@@ -50,12 +50,12 @@ export default async function Table({
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
-        <div className="rounded-lg bg-gray-50 px-2 pb-2 md:pt-0">
+        <div className="application-table rounded-lg px-2 pb-2 md:pt-0">
           <div className="md:hidden">
             {applications2?.map((application, index) => (
               <div
                 key={index}
-                className="mb-2 w-full rounded-md bg-white p-4 border border-yellow-500"
+                className="mb-2 w-full rounded-md p-4 border border-yellow-500"
               >
                 <div className="flex items-center justify-between border-b pb-4">
                   <div>
@@ -81,7 +81,7 @@ export default async function Table({
               </div>
             ))}
           </div>
-          <table className="hidden min-w-full text-gray-900 md:table">
+          <table className="application-table hidden min-w-full text-gray-900 md:table">
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
                 {tableHeaders.map((header, index) => {
@@ -93,7 +93,7 @@ export default async function Table({
                 })}
               </tr>
             </thead>
-            <tbody className="bg-white">
+            <tbody className="application-table">
               {applications2?.map((application, index) => (
                 <tr
                   key={index}

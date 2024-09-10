@@ -2,7 +2,7 @@
 'use client';
 import { useState, useEffect, MouseEvent } from "react"
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
-import { EyeIcon, EyeSlashIcon, ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
+import { EyeIcon, EyeSlashIcon, ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { RegistrationFormData, User } from "../../lib/definitions";
 import { registerUser } from "@/app/lib/action";
@@ -66,7 +66,7 @@ export default function RegistrationForm() {
   }
 
   return (
-    <form className="bg-white min-w-[300px] max-w-[350px] p-4 rounded-lg shadow-lg">
+    <form className="account-form min-w-[300px] max-w-[350px] p-4 rounded-lg shadow-lg">
       <h1 className="font-bold text-2xl text-center">Register</h1>
       <div className="pb-4">
         <div>
@@ -98,7 +98,7 @@ export default function RegistrationForm() {
         <div>
           <label htmlFor="password"
             className="mb-2 mt-3 block text-md font-medium text-gray-900">Password</label>
-          <div className="border border-solid border-gray-400 rounded-xl flex pr-2">
+          <div className="account-form-eye-div border border-solid border-gray-400 rounded-xl flex pr-2">
             <input type={visible[0] ? "text" :"password"} id="password" name="password" placeholder="Enter your password"
               className="flex-grow w-auto pl-3 py-1 rounded-full border-0 focus:ring-0"
               onChange={(e) => { setFormData({...formData, password: e.target.value})}}
@@ -114,7 +114,7 @@ export default function RegistrationForm() {
         <div>
           <label htmlFor="confirm-password"
             className="mb-2 mt-3 block text-md font-medium text-gray-900">Confirm Password</label>
-          <div className="border border-solid border-gray-400 rounded-xl focus:outline-black flex pr-2">
+          <div className="account-form-eye-div border border-solid border-gray-400 rounded-xl focus:outline-black flex pr-2">
             <input type={visible[1] ? "text" :"password"} id="confirm-password" name="confirm-password" placeholder="Confirm your password"
               className="w-full pl-3 py-1 rounded-xl border-0 focus:ring-0"
               onChange={(e) => { setFormData({...formData, confirmPassword: e.target.value})}}

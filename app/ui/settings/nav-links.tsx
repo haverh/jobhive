@@ -30,9 +30,9 @@ export function SettingsNavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-              "flex h-[48px] grow items-center justify-center bg-gray-50 p-3 mr-1 text-sm font-medium hover:bg-yellow-100 hover:text-yellow-500",
+              "hoverable flex h-[48px] grow items-center justify-center p-3 mr-1 text-sm font-medium",
               {
-                "bg-yellow-100 text-yellow-500": link.name.toLowerCase() === tab,
+                "text-yellow-500": link.name.toLowerCase() === tab,
                 "rounded-tl-xl rounded-tr-md rounded-b-md": ind == 0,
                 "rounded-md": ind !== 0,
               },

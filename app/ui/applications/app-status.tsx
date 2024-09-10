@@ -32,11 +32,11 @@ export default function AppStatus({ status }: { status: string; }) {
     <div className={clsx(
       'flex w-fit items-center py-1 px-2 rounded-full',
       {
-        "bg-red-200" : status === "rejected",
-        "bg-green-200" : status === "accepted",
-        "bg-blue-200" : status === "offered",
-        "bg-yellow-200" : status === "interviewed",
-        "bg-gray-200" : status === "pending",
+        "bg-red-200 dark:bg-red-900" : status === "rejected",
+        "bg-green-200 dark:bg-green-900" : status === "accepted",
+        "bg-blue-200 dark:bg-blue-900" : status === "offered",
+        "bg-yellow-200 dark:bg-yellow-900" : status === "interviewed",
+        "bg-gray-200 dark:bg-gray-900" : status === "pending",
       }
     )}>
       <p className='w-fit mr-2'>{capitalize(status)}</p>

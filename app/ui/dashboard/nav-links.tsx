@@ -28,13 +28,13 @@ export function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-              "flex h-[40px] grow items-center justify-center rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-yellow-100 hover:text-yellow-500 md:h-[48px] md:flex-none md:justify-start md:p-2 md:px-3",
+              "hoverable nav-link flex h-full grow items-center justify-center rounded-md bg-gray-50 p-3 text-sm font-medium md:h-[48px] md:flex-none md:justify-start md:p-2 md:px-3",
               {
                 "bg-yellow-100 text-yellow-500": pathname === link.href,
               },
             )}
           >
-            <LinkIcon className="w-5 h-5 md:w-6 md:h-6 mr-2" />
+            <LinkIcon className="w-5 h-5 md:w-6 md:h-6" />
             <p className="hidden md:block">{link.name}</p>
           </Link>
         );
@@ -51,7 +51,7 @@ export function Settings() {
     <Link
       href='?modal=true&tab=account&task=view'
       className={clsx(
-        "flex h-[40px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-yellow-100 hover:text-yellow-500 md:h-[48px] md:flex-none md:justify-start md:p-2 md:px-3",
+        "hoverable nav-link flex h-full w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium md:h-[48px] md:flex-none md:justify-start md:p-2 md:px-3",
         {
           "bg-yellow-100 text-yellow-500": modal,
         },

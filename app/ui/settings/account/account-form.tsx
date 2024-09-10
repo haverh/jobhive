@@ -13,13 +13,13 @@ export default function AccountForm({
   const task = searchParams.get("task");
 
   return (
-    <div className="bg-white h-full rounded-b-xl">
+    <div className="h-full bg-white dark:bg-[#383838] rounded-b-xl">
       <div className="h-full w-full flex flex-col lg:flex-row">
         <SubNav />
-        <div className="flex-grow p-4 overflow-y-scroll">
+        <div className="relative w-full h-full p-4 overflow-y-scroll">
           {task === 'view' && <Profile user={user} />}
           {task === 'edit' && <EditProfile user={user} />}
-          {task === 'delete' && <DeleteAccount />}
+          {task === 'delete' && <DeleteAccount user_id={user.id}  />}
         </div>
       </div>
     </div>

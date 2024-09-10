@@ -53,7 +53,7 @@ function PaginationNumber({
 }) {
   return (  
     <div className="flex mx-4 ">
-      <div className="flex items-center mr-1 px-2 border border-black">{page}</div>
+      <div className="flex items-center mr-1 px-2 border border-gray-500">{page}</div>
       <span>of {totalPages}</span>
     </div>
   )

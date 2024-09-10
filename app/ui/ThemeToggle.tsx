@@ -1,27 +1,10 @@
 'use client';
-import { useEffect, useState } from "react";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
+import {useTheme} from "./ThemeContext";
 
+// Theme Toggle component that changes the 'theme' value for the app
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState(
-    typeof window !== 'undefined' && localStorage.getItem('theme') 
-    ? localStorage.getItem('theme') 
-    : localStorage.getItem('light')
-  )
-
-  useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  },[theme])
-
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  };
+  const {theme, toggleTheme} = useTheme();
 
   return (
     <div className="flex items-center justify-center">

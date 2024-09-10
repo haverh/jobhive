@@ -4,5 +4,218 @@
 
 
 :root {
+  transition: background-color 0.2s ease;
+}
+
+body {
   background-color: #FDF7E4;
+  color: black;
+  transition: background-color 0.2s ease;
+  
+}
+
+.dark body {
+  background-color: #121212;
+  color: white;
+}
+
+.hoverable:hover {
+  cursor: pointer;
+  background-color: #ffa33f;
+  color: #fee9d2;
+}
+
+.dark .hoverable:hover {
+  background-color: #ab5900;
+  color: #fee9d2;
+}
+
+
+
+.nav-bar {
+  background-color: white;
+  transition: background-color 0.2s ease;
+}
+
+.dark .nav-bar {
+  background-color: #1F1F1F;
+}
+
+.nav-link {
+  background-color: #f9fafb;
+  transition: background-color 0.2s ease;
+}
+
+.dark .nav-link {
+  background-color: #1F1F1F;
+}
+
+
+.stats-background {
+  background-color: #e4eafd;
+  transition: background-color 0.2s ease;
+}
+
+.dark .stats-background {
+  background-color: #1F1F1F;
+}
+
+/* Applications */
+.search-input {
+  background-color: #f9fafb;
+  transition: background-color 0.2s ease;
+}
+
+.dark .search-input {
+  background-color: #1F1F1F;
+}
+
+.application-table {
+  background-color: #f9fafb;
+  transition: background-color 0.2s ease;
+}
+
+.dark .application-table {
+  background-color: #1F1F1F;
+  color: white;
+}
+
+.account-form {
+  background-color: white;
+  transition: background-color 0.2s ease;
+}
+
+.dark .account-form {
+  background-color: #1F1F1F;
+}
+
+.account-form label {
+  color: #111827;
+  transition: background-color 0.2s ease;
+}
+
+.dark .account-form label {
+  color: white;
+}
+
+.account-form input {
+  border-radius: 9999px;
+  border-width: 0px;
+  transition: background-color 0.2s ease;
+
+  background-color: white;
+  color: black;
+}
+
+.dark .account-form input {
+  background-color: #2B2B2B;
+  color: white;
+}
+
+.account-form-eye-div {
+  transition: background-color 0.2s ease;
+}
+
+.dark .account-form-eye-div {
+  background-color: #2B2B2B;
+  color: white;
+}
+
+/* Settings Modal */
+.modal {
+  background-color: #f3f4f6;
+  transition: background-color 0.2s ease;
+}
+
+.dark .modal {
+  background-color: #1F1F1F;
+  color: white;
+}
+
+.modal-nav {
+  background-color: #e5e7eb;
+  transition: background-color 0.2s ease;
+}
+
+.dark .modal-nav {
+  background-color: #2B2B2B;
+  color: white;
+}
+
+.settings-form {
+  transition: background-color 0.2s ease;
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.dark .settings-form {
+  background-color: #454545;
+  color: #f3f4f6;
+}
+
+.settings-form input {
+  transition: background-color 0.2s ease;
+  color: #1F1F1F;
+}
+
+.dark .settings-form input {
+  background-color: #383838;
+  color: #f3f4f6;
+}
+
+.combo-options {
+  transition: background-color 0.2s ease;
+  background-color: white;
+  
+}
+
+.dark .combo-options {
+  background-color: #383838;
+}
+
+/* asdasdasdasdasdasdasdasd */
+.combo-option:focus-visible {
+  transition: background-color 0.2s ease;
+  background-color: #ab5900;
+  font-weight: bold;
+}
+/* asdqasdasdasdasasdasd */
+
+.combo-options span {
+  transition: background-color 0.2s ease;
+  color: #6b7280;
+}
+
+.dark .combo-options span {
+  color: #d1d5db;
+}
+
+.profile-form-divider {
+  transition: background-color 0.2s ease;
+  height: 2px;
+  width: 100%;
+  margin: 0.5rem 0;
+  background-color: #d1d5db;
+}
+
+.profile-form-label {
+  transition: background-color 0.2s ease;
+  color: #9ca3af;
+  font-weight: bold;
+}
+
+
+.dark-secondary {
+  transition: background-color 0.2s ease;
+  background-color: #1F1F1F;
+  color: white;
+}
+
+.dark-tertiary {
+  transition: background-color 0.2s ease;
+  background-color: #2B2B2B;
+}
+
+.animate {
+  animation: 3s infinite alternate slidein;
 }

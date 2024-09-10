@@ -19,7 +19,7 @@ export default function ForgotPasswordForm() {
   }
 
   return (
-    <form action={forgotPasswordFn} className="bg-white h-fit w-fit p-7 rounded-lg shadow-lg">
+    <form action={forgotPasswordFn} className="account-form h-fit w-fit p-7 rounded-lg shadow-lg">
       <h1 className="font-bold text-2xl text-center mb-8">Forgot Password</h1>
       <div>
         <div>
@@ -40,7 +40,7 @@ export default function ForgotPasswordForm() {
       </div>
       
       <hr className="my-4 h-[2px] text-gray-500 bg-gray-500"/>
-      <p>Already have an account? <Link href="/sign-in" className="text-sky-500">Sign in</Link></p>
+      <p>Already have an account? <Link href="/sign-in" className="text-yellow-500">Sign in</Link></p>
     </form>
   )
 };

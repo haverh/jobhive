@@ -24,12 +24,12 @@ export default function LinksForm({
   }
 
   return (
-    <div className="px-4 py-8 bg-white h-full rounded-b-xl md:p-8">
+      <div className="px-4 py-8 bg-white dark:bg-[#383838] h-full rounded-b-xl md:p-8">
       <div className="flex justify-center">
-        <form className="w-full px-4 min-w-[250px] max-w-[450px] rounded-xl bg-gray-100 md: p-4">
+        <form className="settings-form w-full px-4 min-w-[250px] max-w-[450px] rounded-xl md: p-4">
           <div>
             <label htmlFor="linkedin-url"
-              className="mb-1 mt-2 block text-md font-medium text-gray-900">LinkedIn URL</label>
+              className="mb-1 mt-2 block text-md font-medium">LinkedIn URL</label>
             <div className="border border-solid border-gray-400 rounded-xl focus:outline-black flex">
               <input type="text" id="linkedin-url" name="linkedin-url" placeholder="Enter your LinkedIn profile link"
                 className="w-full pl-3 py-1 rounded-xl border-0 focus:ring-0"
@@ -41,7 +41,7 @@ export default function LinksForm({
 
           <div>
             <label htmlFor="github-url"
-              className="mb-1 mt-2 block text-md font-medium text-gray-900">GitHub URL</label>
+              className="mb-1 mt-2 block text-md font-medium">GitHub URL</label>
             <div className="border border-solid border-gray-400 rounded-xl focus:outline-black flex">
               <input type="text" id="github-url" name="github-url" placeholder="Enter your GitHub profile link"
                 className="w-full pl-3 py-1 rounded-xl border-0 focus:ring-0"
@@ -53,7 +53,7 @@ export default function LinksForm({
 
           <div>
             <label htmlFor="portfolio-url"
-              className="mb-1 mt-2 block text-md font-medium text-gray-900">Portfolio URL</label>
+              className="mb-1 mt-2 block text-md font-medium">Portfolio URL</label>
             <div className="border border-solid border-gray-400 rounded-xl focus:outline-black flex">
               <input type="text" id="portfolio-url" name="portfolio-url" placeholder="Enter your Portfolio profile link"
                 className="w-full pl-3 py-1 rounded-xl border-0 focus:ring-0"

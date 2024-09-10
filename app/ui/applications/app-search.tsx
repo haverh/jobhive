@@ -23,7 +23,7 @@ export default function AppSearch() {
 
   return (
     <form className="md:w-3/5 h-16 flex items-center">
-      <input className="w-full h-10 pl-2 mr-2 rounded-lg" type="text" 
+      <input className="search-input w-full h-10 pl-2 mr-2 rounded-lg" type="text" 
         placeholder="Search for role..."
         onChange={(e) => {setQuery(e.target.value)}} />
       <Button className="h-10 w-12 flex justify-center items-center bg-yellow-400 rounded-lg hover:bg-yellow-300 active:bg-yellow-500"

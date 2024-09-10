@@ -29,18 +29,12 @@ export default function StatusRatio({
   statusratio: Array<any>;
 }) {
 
-  console.log("status ratio",  statusratio)
-  const updatedStatusRatio = statusratio.forEach((obj) => {
-    console.log(obj)
-  })
-
-
   const pieData = {
     // labels: ['Pending', 'Rejected', 'Interviewed', 'Offered', 'Accepted'],
     labels: statusratio.map((obj) => obj.status),
     datasets: [
       {
-        label: '# of Votes',
+        label: 'Amount Applied',
         // data: [12, 19, 3, 5, 2],
         data: statusratio.map((obj) => obj.count),
         backgroundColor: [
@@ -66,7 +60,7 @@ export default function StatusRatio({
 
 
   return (
-    <div className="flex w-full items-center justify-center bg-[#e4eafd] text-center text-4xl rounded-xl 
+    <div className="stats-background flex w-full items-center justify-center text-center text-4xl rounded-xl 
       col-span-1 
       sm:col-span-4
       lg:col-span-4 ">

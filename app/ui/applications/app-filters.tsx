@@ -29,7 +29,7 @@ function SortComponent({
     <form>
       <div>
         <label htmlFor="sortBy" className="h-8">Sort By: </label>
-        <select name="sortBy" id="sortBy" className="py-2 w-fit h-10 rounded"
+        <select name="sortBy" id="sortBy" className="dark:bg-[#1F1F1F] py-2 w-fit h-10 rounded"
           onChange={(e) => {setSort(e.target.value)}}>
           {sortList.map((sortElement, index) => {
             return (
@@ -61,12 +61,12 @@ function FilterComponent({
 
   return (
     <div className="relative">
-      <button onClick={() => {setToggle(!toggle)}} className='bg-gray-400 text-white p-2 h-10 rounded-xl flex items-center gap-2'>
+      <button onClick={() => {setToggle(!toggle)}} className='bg-gray-200 dark:bg-[#1F1F1F] dark:text-white p-2 h-10 rounded-xl flex items-center gap-2'>
         <span>Filter </span>
         <FunnelIcon className="inline w-4 h-4"/>
       </button>
       <form className={clsx(
-        'absolute rounded bg-gray-300 p-5 top-12 right-0',
+        'bg-gray-300 dark:bg-[#1F1F1F] absolute rounded p-5 top-12 right-0',
         {
           'hidden' : toggle === false,
           'block' : toggle === true
