@@ -59,7 +59,7 @@ export default function ClipBoardLinks({
                 className='m-1 w-[70px] h-auto hidden md:block'
               /> : <p className='w-[70px] font-bold hidden md:block'>Portfolio</p>}
           
-              <Image src={theme === 'dark' ? clip.iconDark : clip.icon} alt={alt}
+              <Image src={theme === 'dark' ? clip.iconDark : clip.icon} alt={alt} width={40} height={40}
                 className='size-[40px] h-auto md:hidden'
               />
             </button>

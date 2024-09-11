@@ -3,11 +3,11 @@ import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import {useTheme} from "./ThemeContext";
 
 // Theme Toggle component that changes the 'theme' value for the app
-const ThemeToggle = () => {
+const ThemeToggle = ({ className }: { className?: string}) => {
   const {theme, toggleTheme} = useTheme();
 
   return (
-    <div className="flex items-center justify-center">
+    <div className={`flex items-center justify-center ${className}`}>
       <label className="relative flex items-center cursor-pointer">
         <input
           type="checkbox"
