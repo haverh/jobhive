@@ -26,3 +26,9 @@ export interface RegistrationFormData {
   confirmPassword: string;
 }
 
+export type Profile = {
+  name: string;
+  email: string;
+  location: string;
+  phone: string;
+}
