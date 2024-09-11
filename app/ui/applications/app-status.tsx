@@ -8,11 +8,11 @@ import clsx from "clsx";
 
 
 const statuses = new Map([
-  ["rejected", <XMarkIcon key="rejected" className='w-4 h-4 text-red-500'/>],
-  ["accepted", <CheckIcon key="accepted" className='w-4 h-4 text-green-500'/>],
-  ["offered", <DocumentCheckIcon key="offered" className='w-4 h-4 text-blue-500'/>],
-  ["interviewed", <ChatBubbleBottomCenterIcon key="interviewed" className='w-4 h-4 text-yellow-500'/>],
-  ["pending", <ClockIcon key="pending" className='w-4 h-4 text-gray-500'/>]
+  ["rejected", <XMarkIcon key="rejected" className='w-4 h-4 text-red-600 dark:text-red-400'/>],
+  ["accepted", <CheckIcon key="accepted" className='w-4 h-4 text-green-600 dark:text-green-400'/>],
+  ["offered", <DocumentCheckIcon key="offered" className='w-4 h-4 text-blue-600 dark:text-blue-400'/>],
+  ["interviewed", <ChatBubbleBottomCenterIcon key="interviewed" className='w-4 h-4 text-yellow-600 dark:text-yellow-400'/>],
+  ["pending", <ClockIcon key="pending" className='w-4 h-4 text-gray-500  dark:text-gray-400'/>]
 ]);
 
 const statusColors = new Map([
@@ -36,7 +36,7 @@ export default function AppStatus({ status }: { status: string; }) {
         "bg-green-200 dark:bg-green-900" : status === "accepted",
         "bg-blue-200 dark:bg-blue-900" : status === "offered",
         "bg-yellow-200 dark:bg-yellow-900" : status === "interviewed",
-        "bg-gray-200 dark:bg-gray-900" : status === "pending",
+        "bg-gray-200 dark:bg-gray-700" : status === "pending",
       }
     )}>
       <p className='w-fit mr-2'>{capitalize(status)}</p>

@@ -80,6 +80,51 @@ body {
   color: white;
 }
 
+.app-form input {
+  transition: background-color 0.2s ease;
+  border-width: 1px black solid;
+  width: 100%;
+  border-radius: 0.375rem;
+}
+
+.dark .app-form input {
+  background-color: #2B2B2B;
+}
+
+.app-fieldset > div {
+  transition: background-color 0.2s ease;
+  border: 1px solid #d1d5db;
+  background-color: white;
+}
+
+.dark .app-fieldset > div {
+  border-color: #6b7280;
+  background-color: #2B2B2B;
+}
+
+.app-fieldset input {
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  width: 1rem;
+  height: 1rem;
+  border-color: #d1d5db;
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+
+.dark .app-fieldset input {
+  background-color: #525252;
+}
+
+.app-fieldset label {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.375;
+  border-radius: 9999px;
+}
+
 .account-form {
   background-color: white;
   transition: background-color 0.2s ease;
