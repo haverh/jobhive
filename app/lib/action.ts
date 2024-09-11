@@ -20,7 +20,7 @@ export async function registerUser(user: User){
       email: user.email,
       password: user.password,
       options: {
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_DOMAIN}/sign-in`,
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_VERCEL_DOMAIN}/sign-in`,
         data: {
           name: user.name,
           links: [{site: 'linkedin', link: ''}, {site: 'github', link: ''}, {site: 'portfolio', link: ''}],
@@ -56,7 +56,7 @@ export async function resendConfirmation(email: string) {
     type: 'signup',
     email: email,
     options: {
-      emailRedirectTo: `${process.env.NEXT_PUBLIC_DOMAIN}/sign-in`,
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_VERCEL_DOMAIN}/sign-in`,
     }
   })
 
@@ -106,7 +106,7 @@ export async function forgotPassword(email: string) {
   const supabase = createClient();
 
   const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_DOMAIN}/reset-password`,
+    redirectTo: `${process.env.NEXT_PUBLIC_VERCEL_DOMAIN}/reset-password`,
   })
 
   console.log(data,error)
