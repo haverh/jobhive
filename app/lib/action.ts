@@ -4,19 +4,23 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { unstable_noStore as noStore } from 'next/cache';
 import { createClient } from '@/utils/supabase/server';
-import type { User, Application, Links } from '@/app/lib/definitions';
+import type { User, Application, Links, Profile } from '@/app/lib/definitions';
 import { cookies } from 'next/headers'
+import { isAuthApiError, isAuthError } from '@supabase/supabase-js';
 
+
+// Account Server Functions
 export async function registerUser(user: User){
+  console.log("IN RESIGETER IN ACTION TS")
   const supabase = createClient();
 
   // Sign Up with email
-  const { error } = await supabase.auth.signUp(
+  const { data, error } = await supabase.auth.signUp(
     {
       email: user.email,
       password: user.password,
       options: {
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_VERCEL_DOMAIN}/sign-in`,
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_DOMAIN}/sign-in`,
         data: {
           name: user.name,
           links: [{site: 'linkedin', link: ''}, {site: 'github', link: ''}, {site: 'portfolio', link: ''}],
@@ -25,31 +29,71 @@ export async function registerUser(user: User){
     }
   );
   
+  console.log(data, error )
+
   if ( error ) {
-    redirect('/error')
+    console.log(error.code)
+    redirect(`/auth/error?error?${error.code}`)
+  } else {
+    if ( data.user && data.user.identities && data.user.identities.length === 0 ) {
+      console.log("ALREADY EXISTS")
+      return "user_already_exists"
+    } else {
+      revalidatePath('/', 'layout')
+      redirect('/dashboard')
+    }
+    
   }
 
-  revalidatePath('/', 'layout')
-  redirect('/dashboard')
+  
 }
+
+
+export async function resendConfirmation(email: string) {
+  const supabase = createClient();
+
+  const { error } = await supabase.auth.resend({
+    type: 'signup',
+    email: email,
+    options: {
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_DOMAIN}/sign-in`,
+    }
+  })
+
+  if ( error ) {
+    console.log(error)
+    redirect('/auth/error')
+  }
+
+  return {error}
+}
+
 
 export async function signInUser(user: User) {
   const supabase = createClient();
   
   // Sign in with email
-  const { error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email: user.email,
     password: user.password,
   })
   
   if ( error ) {
-    console.log(error)
-    redirect('/error')
+    let redirectURL = `/auth/error?error=${error.code}&error_msg=${error.message}`
+    console.log(error.code, error.name, error.message)
+    if (error.code === 'email_not_confirmed') {
+      redirect(redirectURL + `&unverified_email=${user.email}`)
+    } else if (error.code === 'invalid_credentials')
+      return error.code
+  } else {
+    revalidatePath('/', 'layout')
+    redirect('/dashboard')
+    return "success";
   }
 
-  revalidatePath('/', 'layout')
-  redirect('/dashboard')
+  
 }
+
 
 export async function signOutUser() {
   const supabase = createClient();
@@ -62,8 +106,12 @@ export async function forgotPassword(email: string) {
   const supabase = createClient();
 
   const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_VERCEL_DOMAIN}/reset-password`,
+    redirectTo: `${process.env.NEXT_PUBLIC_DOMAIN}/reset-password`,
   })
+
+  console.log(data,error)
+
+  return { data, error };
 
   console.log("FORGOT PASSWORD -", data, error);
 }
@@ -72,6 +120,7 @@ export async function updatePassword(password: string, code: string | null) {
   const supabase = createClient();
 
   // console.log("GOT INTO UPDATE PASSWORD")
+  console.log("CODE IS:", code);
 
   if ( code ) {
     const {error} = await supabase.auth.exchangeCodeForSession(code);
@@ -92,6 +141,57 @@ export async function updatePassword(password: string, code: string | null) {
   return { subdirectory: 'sign-in', parameters: 'message=Your Password has been reset successfully. Sign In.'}
 }
 
+export async function updateLinks(links: Links) {
+  console.log("IN UPDATE LINKS ", links)
+  const supabase = createClient();
+
+  const { error } = await supabase.auth.updateUser({
+    data: {
+      links: {linkedin: links.linkedin, github: links.github, portfolio: links.portfolio}
+    }
+  })
+
+  if ( error ) {
+    console.log(error)
+    redirect('/error')
+  }
+}
+
+export async function updateProfile(profile: Profile) {
+  const supabase = createClient();
+  console.log("PROFILE: ==>", profile);
+  const { error } = await supabase.auth.updateUser({
+    email: profile.email,
+    phone: profile.phone,
+    data: {
+      email: profile.email,
+      name: profile.name,
+      location: profile.location
+    }
+  })
+
+  if ( error ) {
+    console.log(error);
+    redirect('/error');
+  }
+}
+
+export async function deleteAccount(userId: string) {
+  const supabase = createClient();
+
+  
+  const { data, error } = await supabase.auth.admin.deleteUser(userId);
+
+  if ( error ) {
+    console.log(error);
+    redirect('/error');
+  }
+}
+
+
+
+
+// Application Server Functions
 export async function insertApplication(app: Application) {
   noStore();
   const supabase = createClient();
@@ -164,24 +264,7 @@ export async function deleteApplication(id: string) {
   redirect('/dashboard/applications')  
 }
 
-export async function updateLinks(links: Links) {
-  console.log("IN UPDATE LINKS ", links)
-  const supabase = createClient();
 
-  const { error } = await supabase.auth.updateUser({
-    data: {
-      links: {linkedin: links.linkedin, github: links.github, portfolio: links.portfolio}
-    }
-  })
-
-  if ( error ) {
-    console.log(error)
-    redirect('/error')
-  }
-  
-
-
-}
 
 
 // Non-database related
