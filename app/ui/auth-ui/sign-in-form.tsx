@@ -14,13 +14,18 @@ export default function SignInForm() {
     setVisible(prev => !prev);
   }
 
-  const submitForm = (event: MouseEvent<HTMLButtonElement>) => {
+  const submitForm = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    signInUser(userData);
+    const msg = await signInUser(userData);
+    console.log("FROM CIIENT:", msg)
+
+    if (msg === 'invalid_credentials') {
+      alert('Invalid Credentials: Please try again with the correct email and password.')
+    }
   }
 
   return (
-    <form className="account-form h-fit w-fit p-7 rounded-lg shadow-lg">
+    <form className="relative account-form h-fit w-fit p-7 rounded-lg shadow-lg">
       <h1 className="font-bold text-2xl text-center">Sign In</h1>
       <div>
         <div>
