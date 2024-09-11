@@ -5,6 +5,7 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 interface ThemeContextType {
   theme: string;
   toggleTheme: () => void;
+  isThemeLoaded: boolean;
 }
 
 // Create the context with default values
@@ -20,30 +21,38 @@ export const useTheme = () => {
 };
 
 // Provider component that wraps your app and manages the theme state
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<string>(() => {
-    // Handle the case where localStorage might return null
-    const storedTheme = localStorage.getItem('theme');
-    return storedTheme ? storedTheme : 'light'; // Fallback to 'light' if null
-  });
+export const ThemeProvider = ({ children, className }: { children: ReactNode; className?: string }) => {
+  const [theme, setTheme] = useState<string>('light');
+  const [isThemeLoaded, setIsThemeLoaded] = useState(false); // Track when theme is loaded
 
   useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) {
+      setTheme(storedTheme);
     }
-  }, [theme]);
+    setIsThemeLoaded(true); // Once theme is read from localStorage, mark it as loaded
+  }, []);
+
+  useEffect(() => {
+    if (isThemeLoaded) {
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      localStorage.setItem('theme', theme);
+    }
+  }, [theme, isThemeLoaded]);
 
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
+    <div className={className}>
+      <ThemeContext.Provider value={{ theme, toggleTheme, isThemeLoaded }}>
+      {isThemeLoaded ? children : null} {/* Prevent rendering until theme is loaded */}
     </ThemeContext.Provider>
+    </div>
   );
 };
