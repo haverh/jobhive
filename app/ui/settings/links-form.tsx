@@ -8,7 +8,7 @@ export default function LinksForm({
 }: {
   user: any;
 }) {
-  console.log(user.user_metadata.links);
+  // console.log(user.user_metadata.links);
 
   const [links, setLinks] = useState<Links>(user.user_metadata.links);
 
@@ -18,7 +18,8 @@ export default function LinksForm({
     // const github = formData.get('github-url') as string;
     // const portfolio = formData.get('portfolio') as string;
     // const links: any = {linkedin, github, portfolio};
-    console.log("LINKS THING =>", links);
+    
+    // console.log("LINKS THING =>", links);
 
     updateLinks(links);
   }

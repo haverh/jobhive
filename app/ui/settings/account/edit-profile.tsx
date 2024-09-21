@@ -115,7 +115,7 @@ export default function EditProfile({
 
   const submitForm = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    console.log(profile);
+    // console.log(profile);
     setConfirmModal(true);
   }
 

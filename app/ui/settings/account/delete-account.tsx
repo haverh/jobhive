@@ -16,7 +16,7 @@ function ConfirmPopUp({
   const confirmDeletion = () => {
     // event.preventDefault();
     setModal(false);
-    console.log("Confirmed Deletion of your Account with ID:", user_id)
+    // console.log("Confirmed Deletion of your Account with ID:", user_id)
     // deleteAccount(user_id);
   }
 
@@ -55,7 +55,7 @@ export default function DeleteAccount({
     event.preventDefault();
     setConfirmModal(true);
 
-    console.log("Initalizing Deletion of your Account with ID:", user_id)
+    // console.log("Initalizing Deletion of your Account with ID:", user_id)
 
     // deleteAccount(user_id);
   }
