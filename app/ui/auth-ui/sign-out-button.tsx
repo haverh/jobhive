@@ -1,4 +1,3 @@
-'use client';
 import { MouseEvent } from "react";
 import { PowerIcon } from "@heroicons/react/24/solid";
 import { signOutUser } from "../../lib/action";
