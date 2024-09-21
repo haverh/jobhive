@@ -90,8 +90,6 @@ export async function signInUser(user: User) {
     redirect('/dashboard')
     return "success";
   }
-
-  
 }
 
 
@@ -115,6 +113,17 @@ export async function forgotPassword(email: string) {
 
   console.log("FORGOT PASSWORD -", data, error);
 }
+
+
+
+export async function getUser() {
+  const supabase = createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  return user;
+}
+
+
 
 export async function updatePassword(password: string, code: string | null) {
   const supabase = createClient();
