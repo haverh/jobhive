@@ -18,11 +18,11 @@ export default function EditApplication({ application }: { application: Applicat
   const updateApplicationEvent = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if ( (JSON.stringify(application) === JSON.stringify(applicationForm)) ) {
-      console.log("ERROR: NO VALUES HAVE BEEN MODIFIED");
+      // console.log("ERROR: NO VALUES HAVE BEEN MODIFIED");
     } else if ( Object.values(applicationForm).some(value => value.trim() === '') ) {
-      console.log("THERE ARE SOME MISSING FIELDS THAT NEED TO BE FILLED");
+      // console.log("THERE ARE SOME MISSING FIELDS THAT NEED TO BE FILLED");
     } else {
-      console.log("COMMENCING UPDATE WITH DATA", applicationForm);
+      // console.log("COMMENCING UPDATE WITH DATA", applicationForm);
       updateApplication(applicationForm);
     }
   }

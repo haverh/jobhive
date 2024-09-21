@@ -30,7 +30,7 @@ export default function ResetPasswordForm() {
     if ( password === confirmPassword ) {
       const data = await updatePassword(password, code);
 
-      console.log(data);
+      // console.log(data);
       redirect(`/${data.subdirectory}?${data.parameters}`);
     }
   }

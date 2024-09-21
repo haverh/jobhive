@@ -19,7 +19,7 @@ export function SettingsNavLinks() {
   const searchParams = useSearchParams();
   const tab = searchParams.get("tab");
   const pathname = usePathname();
-  console.log()
+  // console.log()
 
   return (
     <>
