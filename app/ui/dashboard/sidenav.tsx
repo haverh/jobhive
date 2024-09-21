@@ -39,13 +39,7 @@ export default function SideNav({
         <div>
           <Settings/>
         </div>
-        <form 
-          action={async () => {
-            'use server';
-          }}
-        >
-          <SignOutButton />
-        </form>
+        <SignOutButton />
       </div>
     </div>
   )
