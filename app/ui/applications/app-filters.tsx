@@ -29,7 +29,7 @@ function SortComponent({
     <form>
       <div>
         <label htmlFor="sortBy" className="h-8">Sort By: </label>
-        <select name="sortBy" id="sortBy" className="dark:bg-[#1F1F1F] py-2 w-fit h-10 rounded"
+        <select name="sortBy" id="sortBy" className="dark:bg-[#2C2C2C] py-2 w-fit h-10 rounded dark:hover:bg-[#333333]"
           onChange={(e) => {setSort(e.target.value)}}>
           {sortList.map((sortElement, index) => {
             return (
@@ -61,12 +61,12 @@ function FilterComponent({
 
   return (
     <div className="relative">
-      <button onClick={() => {setToggle(!toggle)}} className='bg-gray-200 dark:bg-[#1F1F1F] dark:text-white p-2 h-10 rounded-xl flex items-center gap-2'>
+      <button onClick={() => {setToggle(!toggle)}} className='bg-gray-200 dark:bg-[#2C2C2C] dark:text-white p-2 h-10 rounded-xl flex items-center gap-2 dark:hover:bg-[#333333]'>
         <span>Filter </span>
         <FunnelIcon className="inline w-4 h-4"/>
       </button>
       <form className={clsx(
-        'bg-gray-300 dark:bg-[#1F1F1F] absolute rounded p-5 top-12 right-0',
+        'bg-gray-300 dark:bg-[#2C2C2C] absolute rounded p-5 top-12 right-0',
         {
           'hidden' : toggle === false,
           'block' : toggle === true
@@ -75,7 +75,7 @@ function FilterComponent({
         {filterList.map((filterElement, index) => {
           return (
             <div key={index} className='flex items-center'>
-              <input name={filterElement.toLowerCase()} id={filterElement.toLowerCase()} type="checkbox" className='mr-2 hover:cursor-pointer'
+              <input name={filterElement.toLowerCase()} id={filterElement.toLowerCase()} type="checkbox" className='mr-2 hover:cursor-pointer hover:bg-yellow-300'
                 checked={filters[index]} onChange={() => {handleCheckboxes(index)}}></input>
               <label htmlFor={filterElement.toLowerCase()} className='hover:cursor-pointer'>{filterElement}</label>
             </div>
@@ -117,7 +117,7 @@ export default function AppFilter() {
       <div className="flex gap-2">      
         <FilterComponent filters={filters} setFilter={setFiltersValues} />
         <Button onClick={(e) => {applyFilters(e)}}
-          className='px-3 flex justify-center items-center bg-yellow-400 rounded-xl hover:bg-yellow-300 active:bg-yellow-500'>
+          className='px-3 flex justify-center items-center bg-yellow-400 dark:bg-[#FF8C42] rounded-xl hover:bg-yellow-300 dark:hover:bg-[#FF7A24] active:bg-yellow-500'>
           Apply
         </Button>
       </div>
