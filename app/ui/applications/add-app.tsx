@@ -39,21 +39,21 @@ export default function AddApplication({
       {error && <EmptyFieldError setDisplay={setError} />}
       <h1 className='pl-2 text-3xl md:w-4/5 lg:w-3/5 mb-6'>Applications / Add</h1>
       <form className='app-form md:w-4/5 lg:w-3/5'>
-        <div className='pl-2 mb-4'>
+        <div className='pl-2 mb-2'>
           <label htmlFor="role" className="block">Enter Role</label>
           <input id="role" name="role" type="text"
             className="h-8 pl-2"
             onChange={(e) => {setApplicationForm({...applicationForm, role: e.target.value})}}></input>
         </div>
 
-        <div className='pl-2 mb-4'>
+        <div className='pl-2 mb-2'>
           <label htmlFor="company" className="block">Enter Company</label>
           <input id="company" name="company" type="text"
             className="h-8 pl-2"
             onChange={(e) => {setApplicationForm({...applicationForm, company: e.target.value})}}></input>
         </div>
 
-        <div className='pl-2 mb-4'>
+        <div className='pl-2 mb-2'>
           <label htmlFor="job-posting" className="block">Enter Job Posting</label>
           <input id="job-posting" name="job-posting" type="text"
             className="h-8 pl-2"
@@ -125,8 +125,8 @@ export default function AddApplication({
         
       </form>
       <div className='flex justify-end md:w-3/5'>
-        <Link href='/dashboard/applications'  className='bg-gray-300 px-3 py-2 rounded-lg hover:bg-gray-200 active:bg-gray-400 mr-4'>Cancel</Link>
-        <Button className='bg-yellow-400 px-3 py-2 rounded-lg hover:bg-yellow-300 active:bg-yellow-500'
+        <Link href='/dashboard/applications'  className='bg-gray-300 dark:bg-[#2C2C2C] px-3 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-[#333333] active:bg-gray-400 mr-4'>Cancel</Link>
+        <Button className='bg-yellow-400 dark:bg-[#FF8C42] px-3 py-2 rounded-lg hover:bg-yellow-300 dark:hover:bg-[#FF7A24] active:bg-yellow-500'
           onClick={(e) => {addApp(e)}}>Add Application</Button>
       </div>
     </div>

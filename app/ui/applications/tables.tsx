@@ -68,14 +68,12 @@ export default async function Table({
                 </div>
                 <div className="flex w-full items-center justify-between pt-4">
                   <div>
-                    <a target='_blank' href={application.job_posting}>
-                      <ArrowTopRightOnSquareIcon className='w-5 h-5 text-blue-500' />
-                    </a>
                     <p>{application.date_applied}</p>
                   </div>
                   <div className="flex justify-end gap-2">
-                    <button className='mr-2'><PencilSquareIcon className='w-5 h-5' /></button>
-                      <button><TrashIcon className='w-5 h-5 text-red-500' /></button>
+                    <JobPostingButton href={application.job_posting} />
+                    <EditApplicationButton appId={application.id} />
+                    <DeleteApplicationButton appId={application.id} />
                   </div>
                 </div>
               </div>
