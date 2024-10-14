@@ -52,15 +52,15 @@ export default function ClipBoardLinks({
           return (
             <button 
               key={clip.name}
-              className="bg-white dark:bg-[#1F1F1F] h-[40px] flex justify-center items-center rounded hover:bg-yellow-100 md:h-[48px]"
+              className="bg-white dark:bg-[#1F1F1F] h-[40px] flex justify-center items-center rounded hover:bg-yellow-100 sm:h-[48px]"
               onClick={() => copyLink(links[type])}
             >
               {clip.name !== 'Portfolio' ? <Image src={theme === 'dark' ? clip.logoDark : clip.logo } alt={alt}
-                className='m-1 w-[70px] h-auto hidden md:block'
-              /> : <p className='w-[70px] font-bold hidden md:block'>Portfolio</p>}
+                className='m-1 w-[70px] h-auto hidden sm:block'
+              /> : <p className='w-[70px] font-bold hidden sm:block'>Portfolio</p>}
           
               <Image src={theme === 'dark' ? clip.iconDark : clip.icon} alt={alt} width={40} height={40}
-                className='size-[40px] h-auto md:hidden'
+                className='size-[40px] h-auto sm:hidden'
               />
             </button>
           );

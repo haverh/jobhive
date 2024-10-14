@@ -28,18 +28,23 @@ export default function SideNav({
         </div>
         <p className="text-gray-100 dark:text-yellow-500 font-bold text-lg">JobHive</p>
       </Link>
-      <div className="nav-bar flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
+
+      <div className="nav-bar flex grow flex-col justify-between space-x-2 sm:flex-row md:flex-col md:space-x-0 md:space-y-2">
         <ClipBoardLinks links={user.user_metadata.links} />
-        <hr className="h-full w-[2px] shadow-sm justify-self-center text-gray-300 bg-gray-300 md:h-[1.5px] md:w-full" />
-        <NavLinks />
-        <div className="nav-bar hidden h-auto w-full grow rounded-md md:block"></div>
-        <div className="flex items-center p-2">
-          <ThemeToggle />
+        <hr className="h-full sm:w-[2px] shadow-sm justify-self-center text-gray-300 bg-gray-300 md:h-[1.5px] md:w-full" />
+        <div className="flex grow justify-between md:flex-col">
+          <NavLinks />
+          <div className="nav-bar hidden h-auto w-full grow rounded-md md:block"></div>
+          <div className="flex items-center p-2">
+            <ThemeToggle />
+          </div>
+          <div>
+            <Settings/>
+          </div>
+          <div>
+            <SignOutButton />
+          </div>
         </div>
-        <div>
-          <Settings/>
-        </div>
-        <SignOutButton />
       </div>
     </div>
   )
