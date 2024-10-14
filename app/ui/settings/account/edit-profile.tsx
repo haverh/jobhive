@@ -85,7 +85,7 @@ function ConfirmPopUp({
             </div>
 
             <div className="w-full text-center">
-              <Button className="w-4/5 mx-auto px-3 py-2 bg-yellow-400 rounded-xl hover:bg-yellow-300 active:bg-yellow-500 sm:w-3/5"
+              <Button className="w-4/5 mx-auto px-3 py-2 bg-yellow-400 dark:bg-[#FF8C42] rounded-xl hover:bg-yellow-300 dark:hover:bg-[#FF7A24] active:bg-yellow-500 sm:w-3/5"
                 onClick={() => confirmDeletion()}>
                 Confirm Update
               </Button>
@@ -172,7 +172,7 @@ export default function EditProfile({
       </div>
       
       <div className="w-full max-w-[500px] flex justify-center">
-        <Button className="w-full px-3 py-2 my-4 bg-yellow-400 rounded-xl hover:bg-yellow-300 active:bg-yellow-500"
+        <Button className="w-full px-3 py-2 my-4 bg-yellow-400 dark:bg-[#FF8C42] rounded-xl hover:bg-yellow-300 dark:hover:bg-[#FF7A24] active:bg-yellow-500"
         onClick={(e) => {submitForm(e)}}>
           Update
         </Button>
