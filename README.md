@@ -159,11 +159,11 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 <!-- ROADMAP -->
 ## Roadmap
-
-- [ ] Feature 1
+Under construction.
+<!-- - [ ] Feature 1
 - [ ] Feature 2
 - [ ] Feature 3
-    - [ ] Nested Feature
+    - [ ] Nested Feature -->
 
 See the [open issues](https://github.com/haverh/jobhive/issues) for a full list of proposed features (and known issues).
 
@@ -201,7 +201,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - haverho.2020@gmail.com
+Haver Ho - [@twitter_handle](https://twitter.com/twitter_handle) - haverho.2020@gmail.com
 
 Project Link: [https://github.com/haverh/jobhive](https://github.com/haverh/jobhive)
 
