@@ -17,7 +17,6 @@ export default function SignInForm() {
   const submitForm = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const msg = await signInUser(userData);
-    // console.log("FROM CIIENT:", msg)
 
     if (msg === 'invalid_credentials') {
       alert('Invalid Credentials: Please try again with the correct email and password.')

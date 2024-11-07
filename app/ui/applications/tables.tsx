@@ -39,11 +39,6 @@ export default async function Table({
   sort: string;
   filters: Array<string>;
 }) {
-  // console.log()
-  // console.log("QUERY => ", query);
-  // console.log("CURRENT PAGE => ", currentPage);
-  // console.log("SORT => ", sort);
-  // console.log("FILTERS => ", filters);
 
   const applications2 = await fetchApplications(id, query, currentPage, sort, filters);
 

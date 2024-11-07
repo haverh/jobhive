@@ -61,7 +61,6 @@ export default function RegistrationForm() {
   }
 
   const submitForm = async (event: MouseEvent<HTMLButtonElement>) => {
-    // console.log(validForm)
     validateForm();
     event.preventDefault();
     if (validForm && formData.password === formData.confirmPassword) {

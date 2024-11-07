@@ -14,7 +14,6 @@ export default function ResendConfirmationForm() {
     const {error} = await resendConfirmation(my_email);
 
     setConfirmed(true);
-    // console.log(my_email);
   }
 
   return (

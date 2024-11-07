@@ -14,9 +14,7 @@ export default function Modal({
   const searchParams = useSearchParams();
   const modal = searchParams.get("modal");
   const tab = searchParams.get("tab");
-  const pathname = usePathname(); 
-
-  // console.log("FROM MODAL", user);
+  const pathname = usePathname();
 
   return (
     <>

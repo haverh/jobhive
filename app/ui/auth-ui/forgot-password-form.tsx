@@ -7,7 +7,6 @@ export default function ForgotPasswordForm() {
   const forgotPasswordFn = async (formData: FormData) => {
     "use server";
     const email = formData.get('email') as string;
-    // console.log("INTO FUNCTION", email)
 
     const { error } = await forgotPassword(email);
 

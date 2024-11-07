@@ -33,9 +33,6 @@ export default function ApplyTimeline({
   appCountByMonth: Array<any>;
 }) {
 
-  // console.log(thisWeek, prevWeek);
-  // console.log(appCountByMonth)
-
   const lineOptions = {
     responsive: true,
     maintainAspectRatio: false,
