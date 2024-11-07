@@ -10,7 +10,8 @@ import {
   TrashIcon } from '@heroicons/react/24/solid';
 import AppStatus from './app-status';
 import { fetchApplications } from '@/app/lib/data';
-import { JobPostingButton, EditApplicationButton, DeleteApplicationButton } from '@/app/ui/applications/buttons';
+import { JobPostingButton, EditApplicationButton } from '@/app/ui/applications/buttons';
+import { DeleteApplicationButton } from './delete-application';
 import Link from 'next/link';
 
 
