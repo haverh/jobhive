@@ -1,5 +1,6 @@
 // 'use client';
 import { useState } from "react";
+import { Metadata } from "next";
 import Table from "@/app/ui/applications/tables"
 import AppSearch from "@/app/ui/applications/app-search"
 import { AddApplicationButton } from "@/app/ui/applications/buttons"
@@ -9,6 +10,14 @@ import { fetchTotalPages } from "@/app/lib/data";
 import { Suspense } from "react";
 import Loading from "@/app/ui/loading";
 import { createClient } from "@/utils/supabase/server";
+
+
+export const metadata: Metadata = {
+  title: {
+    template: "%s",
+    default: "Applications",
+  },
+};
 
 export default async function Page({
   searchParams,
