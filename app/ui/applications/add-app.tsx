@@ -19,9 +19,11 @@ export default function AddApplication({
 }: {
   id: string;
 }) {
-  const [applicationForm, setApplicationForm] = useState<Application>({id: id, role:'', company:'', job_posting: '', date_applied: '', status: ''});
+  const date = new Date();
+  const maxDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+
+  const [applicationForm, setApplicationForm] = useState<Application>({id: id, role:'', company:'', job_posting: '', date_applied: maxDate, status: 'pending'});
   const [error, setError] = useState(false);
-  const maxDate = new Date().toISOString().split("T")[0];
 
   const addApp = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -62,7 +64,7 @@ export default function AddApplication({
 
         <div className='pl-2 mb-4'>
           <label htmlFor="date" className="block">Enter Date</label>
-          <input id="date" name="date" type="date" max={maxDate}
+          <input id="date" name="date" type="date" max={maxDate} defaultValue={maxDate}
             className="h-8 pl-2"
             onChange={(e) => {setApplicationForm({...applicationForm, date_applied: e.target.value})}}></input>
         </div>
@@ -72,9 +74,9 @@ export default function AddApplication({
             <legend>Choose Status</legend>
 
             <div className="rounded-md border border-gray-300 dark:border-gray-500 bg-white dark:bg-[#2B2B2B] px-[14px] py-3">
-              <div className=' flex flex-wrap gap-4' >
+              <div className=' flex flex-wrap gap-4'>
                 <div className="flex items-center">
-                  <input id="pending" name="status" type="radio" value="pending"
+                  <input id="pending" name="status" type="radio" value="pending" defaultChecked
                     className="focus:ring-2"
                     onClick={() => setApplicationForm({...applicationForm, status: 'pending'})}/>
                   <label htmlFor="pending" className="ml-2 bg-gray-200 dark:bg-gray-700 px-3 py-1.5 text-xs font-medium">
