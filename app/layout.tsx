@@ -1,4 +1,4 @@
-  import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import '@/app/ui/globals.css';
 import { ThemeProvider } from "./ui/ThemeContext";
@@ -6,9 +6,12 @@ import { ThemeProvider } from "./ui/ThemeContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: '/icon.ico',
+  },
   title: {
-    template: "%s | JobHive",
-    default: "JobHive",
+    template: "%s | JobHive Hub",
+    default: "JobHive Hub",
   },
   description: "The perfect place to keep track of your job applications.",
 };
