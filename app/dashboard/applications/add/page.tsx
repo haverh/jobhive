@@ -1,7 +1,13 @@
-
+import { Metadata } from "next";
 import AddApplication from '@/app/ui/applications/add-app';
 import { createClient } from '@/utils/supabase/server';
 
+export const metadata: Metadata = {
+  title: {
+    template: "%s",
+    default: "Add Application",
+  },
+};
 
 export default async function AddApplicationPage() {
   const supabase = createClient();

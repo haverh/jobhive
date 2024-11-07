@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
   title: {
     template: "%s | JobHive Hub",
-    default: "JobHive Hub",
+    default: "Dashboard | JobHive Hub",
   },
   description: "The perfect place to keep track of your job applications.",
 };
