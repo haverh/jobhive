@@ -1,6 +1,5 @@
 import Link from "next/link"
-import { PlusIcon, PencilSquareIcon, TrashIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid"
-import { deleteApplication } from "@/app/lib/action";
+import { PlusIcon, PencilSquareIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid"
 
 
 export function AddApplicationButton() {
@@ -36,24 +35,5 @@ export function EditApplicationButton({
     <Link href={`/dashboard/applications/${appId}/edit`} className="flex items-end">
       <PencilSquareIcon className="inline w-5 h-5"/>
     </Link>
-  )
-}
-
-export function DeleteApplicationButton({
-  appId
-}: {
-  appId: string;
-}) {
-
-  const deleteAppWithId = deleteApplication.bind(null, appId); 
-
-  return (
-    <form action={deleteAppWithId} className="flex items-end">
-      <button>
-        <TrashIcon className='w-5 h-5 text-red-500' />
-      </button>
-    </form>
-    
-    
   )
 }
