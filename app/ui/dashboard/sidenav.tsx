@@ -18,15 +18,15 @@ export default function SideNav({
         className="mb-2 flex h-20 items-center justify-center rounded-md bg-yellow-500 dark:bg-[#1F1F1F] p-4 md:h-40 md:flex-col"
         href="/"
       > 
-        <div className="bg-black flex justify-center items-center mb-2 p-2 rounded-full">
+        <div className="flex justify-center items-center mb-2 p-2 rounded-full">
           <Image
-            src="/jobhive-logo.png"
-            width={50}
-            height={50}
+            src="/jobhive-logo-2.png"
+            width={60}
+            height={60}
             alt="JobHive Logo"
           />
         </div>
-        <p className="text-gray-100 dark:text-yellow-500 font-bold text-lg">JobHive</p>
+        <p className="text-gray-100 dark:text-yellow-500 font-bold text-lg">JobHive Hub</p>
       </Link>
 
       <div className="nav-bar flex grow flex-col justify-between space-x-2 sm:flex-row md:flex-col md:space-x-0 md:space-y-2">
