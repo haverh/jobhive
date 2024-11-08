@@ -6,7 +6,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Pie, Doughnut } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
+import { useTheme } from '../ThemeContext';
 
 ChartJS.register(
   ArcElement,
@@ -15,48 +16,46 @@ ChartJS.register(
   Legend
 );
 
-const statusColors = new Map([
-  ["rejected", "bg-red-200"],
-  ["accepted", "bg-green-200"],
-  ["offered", "bg-blue-200"],
-  ["interviewed", "bg-yellow-200"],
-  ["pending", "bg-gray-200"]
-])
+const statusColors = [
+  {status: "accepted", color: "#4ade80"},
+  {status: "interviewed", color: "#facc15"},
+  {status: "offered", color: "#60a5fa"},
+  {status: "pending", color: "#9ca3af"},
+  {status: "rejected", color: "#f87171"},
+]
+statusColors.sort((a,b) => a.status.localeCompare(b.status));
 
 export default function StatusRatio({
   statusratio,
 }: {
   statusratio: Array<any>;
 }) {
+  const {theme} = useTheme();
+
+  statusratio.sort((a,b) => a.status.localeCompare(b.status));
 
   const pieData = {
-    // labels: ['Pending', 'Rejected', 'Interviewed', 'Offered', 'Accepted'],
     labels: statusratio.map((obj) => obj.status),
     datasets: [
       {
         label: 'Amount Applied',
-        // data: [12, 19, 3, 5, 2],
         data: statusratio.map((obj) => obj.count),
-        backgroundColor: [
-          'rgba(153, 102, 255, 0.4)',
-          'rgba(255, 99, 132, 0.4)',
-          // 'rgba(255, 204, 0, 0.4)',
-          'rgba(191, 192, 194, 0.4',
-          'rgba(54, 162, 235, 0.4)',
-          'rgba(50, 205, 50, 0.4)',
-        ],
-        borderColor: [
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 99, 132, 1)',
-          // 'rgba(255, 204, 0, 1)',
-          'rgba(191, 192, 194, 1',
-          'rgba(54, 162, 235, 1)',
-          'rgba(50, 205, 50, 1)',
-        ],
+        backgroundColor: statusColors.map((obj) => obj.color + "80"),
+        borderColor: statusColors.map((obj) => obj.color + "FF"),
         borderWidth: 1,
       },
     ],
   };
+
+  const pieOptions = {
+    plugins: {
+      legend: {
+        labels: {
+          color: theme === "dark" ? "#d1d5db" : "#111827"
+        }
+      }
+    }
+  }
 
 
   return (
@@ -64,8 +63,7 @@ export default function StatusRatio({
       col-span-1 
       sm:col-span-4
       lg:col-span-4 ">
-      {/* <Pie data={pieData} className='max-w-[100%] max-h-[400px]' /> */}
-      <Doughnut data={pieData} className='max-w-[100%] max-h-[400px]' />
+      <Doughnut data={pieData} options={pieOptions} className='max-w-[100%] max-h-[400px]' />
     </div>
   )
 }

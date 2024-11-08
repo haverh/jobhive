@@ -10,7 +10,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Line, Bar } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
+import { useTheme } from '../ThemeContext';
 
 ChartJS.register(
   CategoryScale,
@@ -33,41 +34,7 @@ export default function ApplyTimeline({
   appCountByMonth: Array<any>;
 }) {
 
-  const lineOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: 'top' as const,
-      },
-      title: {
-        display: true,
-        text: 'Application Timeline',
-      },
-    },
-  };
-  
-  const lineData = {
-    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    datasets: [
-      {
-        label: 'This Week',
-        // data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-        // data: [1,2,3,4,5,6,7],
-        data: thisWeek.map((obj) => { return obj.count }),
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-      {
-        label: 'Previous Week',
-        // data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-        // data: [7,6,5,4,3,2,1],
-        data: prevWeek.map((obj) => { return obj.count }),
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      },
-    ],
-  };
+  const {theme} = useTheme()
   
   const barOptions = {
     responsive: true,
@@ -75,11 +42,33 @@ export default function ApplyTimeline({
     plugins: {
       legend: {
         position: 'top' as const,
+        labels: {
+          color: theme === "dark" ? "#d1d5db" : "#111827"
+        }
       },
       title: {
         display: true,
         text: 'Chart.js Bar Chart',
+        color: theme === "dark" ? "#d1d5db" : "#111827"
       },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: theme === "dark" ? "#d1d5db" : "#111827"
+        },
+        grid: {
+          color: theme === "dark" ? "#d1d5db1a" : "#1118271a"
+        }
+      },
+      y: {
+        ticks: {
+          color: theme === "dark" ? "#d1d5db" : "#111827"
+        },
+        grid: {
+          color: theme === "dark" ? "#d1d5db1a" : "#1118271a"
+        }
+      }
     },
   }
   
@@ -89,8 +78,8 @@ export default function ApplyTimeline({
       {
         label: 'Total Jobs Applied',
         data: appCountByMonth.map((obj) => { return obj.count }),
-        backgroundColor: 'rgba(255, 87, 51, 0.4)',
-        borderColor: 'rgb(255, 87, 51)',
+        backgroundColor: '#ff8c0e66',
+        borderColor: '#ff8c0e',
         borderWidth: 1
       },
     ],

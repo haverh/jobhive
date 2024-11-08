@@ -9,14 +9,14 @@
 
 body {
   background-color: #FDF7E4;
-  color: black;
+  color: #111827;
   transition: background-color 0.2s ease;
   
 }
 
 .dark body {
   background-color: #121212;
-  color: white;
+  color: #d1d5db;
 }
 
 .hoverable:hover {
