@@ -5,34 +5,33 @@ import { useState, MouseEvent, Dispatch, SetStateAction } from "react";
 import { deleteAccount } from "@/app/lib/action";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-function ConfirmPopUp({
-  user_id,
-  setModal
-}: {
-  user_id: string;
-  setModal: Dispatch<SetStateAction<boolean>>;
-}) {
 
-  const confirmDeletion = () => {
-    // event.preventDefault();
-    setModal(false);
-    // console.log("Confirmed Deletion of your Account with ID:", user_id)
-    // deleteAccount(user_id);
-  }
+interface ConfirmationModalProps {
+  isOpen: boolean;
+  onCancel: () => void;
+  onConfirm: () => void;
+}
+
+function ConfirmPopUp({
+  isOpen,
+  onCancel,
+  onConfirm,
+}: ConfirmationModalProps) {
+
+  if (!isOpen) return null;
 
   return (
     <div className="absolute flex items-center justify-center w-full h-full bg-gray-400 dark:bg-[#2C2C2C] rounded-xl p-4">
       <div className="relative flex flex-col w-fit max-w-[400px] pl-4 pb-4 shadow-lg absolute bg-gray-200 dark:bg-[#383838] rounded-xl">
-        <div className="w-full flex justify-end">
-          <button className="mt-2 mr-2" onClick={() => setModal(false)}>
-            <XMarkIcon className="w-5 h-5 text-red-500" />
-          </button>
-        </div>
         <div className="flex flex-col justify-center items-center pt-4 pr-4">
           <h1 className="text-center mb-2 text-lg font-bold sm:text-xl">Account Deletion Confirmation</h1>
           <p className="text-center mb-4 text-sm sm:text-base">This action is permanent and you will lose all your data. Are your sure your want to continue?</p>
           <Button className="w-4/5 text-sm mx-auto px-3 py-2 bg-yellow-400 dark:bg-[#FF8C42] rounded-xl hover:bg-yellow-300 dark:hover:bg-[#FF7A24] active:bg-yellow-500 sm:w-3/5 sm:text-base"
-            onClick={() => confirmDeletion()}>
+            onClick={() => onCancel}>
+            Cancel
+          </Button>
+          <Button className="w-4/5 text-sm mx-auto px-3 py-2 bg-yellow-400 dark:bg-[#FF8C42] rounded-xl hover:bg-yellow-300 dark:hover:bg-[#FF7A24] active:bg-yellow-500 sm:w-3/5 sm:text-base"
+            onClick={() => onConfirm}>
             Confirm Deletion
           </Button>
         </div>
@@ -48,21 +47,24 @@ export default function DeleteAccount({
   user_id: string;
 }) {
   const [match, setMatch] = useState(false);
-  const [confirmModal, setConfirmModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const confirmationMsg = 'Delete My JobHive Account';
 
   const initializeDeletion = ( event: MouseEvent<HTMLButtonElement> ) => {
     event.preventDefault();
-    setConfirmModal(true);
+    setIsModalOpen(true);
+  }
 
-    // console.log("Initalizing Deletion of your Account with ID:", user_id)
+  const handleCancellation = () => {
+    setIsModalOpen(false);
+  }
 
-    // deleteAccount(user_id);
+  const handleDeletion = () => {
+    setIsModalOpen(false);
   }
 
   return (
     <div className="relative w-full h-full">
-      {confirmModal && <ConfirmPopUp user_id={user_id} setModal={setConfirmModal} />}
       <h1 className="font-bold text-xl mb-4">Delete Your Account</h1>
       <h2 className="text-base mb-2">To delete your account, type the text below in the input box to confirm.</h2>
       
@@ -85,6 +87,11 @@ export default function DeleteAccount({
           Delete Account
         </Button>
       </form>
+      <ConfirmPopUp
+        isOpen={isModalOpen}
+        onCancel={handleCancellation}
+        onConfirm={handleDeletion}
+      />
     </div>
   )
 }

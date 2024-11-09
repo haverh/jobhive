@@ -26,7 +26,7 @@ export default function AppSearch() {
       <input className="search-input w-full h-10 pl-2 mr-2 rounded-lg" type="text" 
         placeholder="Search for role..."
         onChange={(e) => {setQuery(e.target.value)}} />
-      <Button className="h-10 w-12 flex justify-center items-center bg-yellow-400 dark:bg-[#FF8C42] rounded-lg hover:bg-yellow-300 dark:hover:bg-[#FF7A24] active:bg-yellow-500"
+      <Button className="h-10 w-12 flex justify-center items-center dark:text-[#333333] bg-yellow-400 dark:bg-[#FF8C42] rounded-lg hover:bg-yellow-300 dark:hover:bg-[#FF7A24] active:bg-yellow-500"
         onClick={(e) => {searchApp(e)}}>
         <MagnifyingGlassIcon className="w-5 font-bold" />
       </Button>

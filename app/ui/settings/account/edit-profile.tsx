@@ -171,7 +171,7 @@ export default function EditProfile({
       </div>
       
       <div className="w-full max-w-[500px] flex justify-center">
-        <Button className="w-full px-3 py-2 my-4 bg-yellow-400 dark:bg-[#FF8C42] rounded-xl hover:bg-yellow-300 dark:hover:bg-[#FF7A24] active:bg-yellow-500"
+        <Button className="w-full px-3 py-2 my-4 font-bold dark:text-[#333333] bg-yellow-400 dark:bg-[#FF8C42] rounded-xl hover:bg-yellow-300 dark:hover:bg-[#FF7A24] active:bg-yellow-500"
         onClick={(e) => {submitForm(e)}}>
           Update
         </Button>
