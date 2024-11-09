@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import '@/app/ui/globals.css';
 import { ThemeProvider } from "./ui/ThemeContext";
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased min-h-full`}>
         <ThemeProvider>
           {children}
+          <Analytics />
         </ThemeProvider>
       <script
         defer
