@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   icons: {
-    icon: '/icon.ico',
+    icon: '/favicon.ico',
   },
   title: {
     template: "%s | JobHive Hub",
