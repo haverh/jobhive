@@ -128,7 +128,7 @@ export default function AddApplication({
       </form>
       <div className='flex justify-end md:w-3/5'>
         <Link href='/dashboard/applications'  className='bg-gray-300 dark:bg-[#2C2C2C] px-3 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-[#333333] active:bg-gray-400 mr-4'>Cancel</Link>
-        <Button className='bg-yellow-400 dark:bg-[#FF8C42] px-3 py-2 rounded-lg hover:bg-yellow-300 dark:hover:bg-[#FF7A24] active:bg-yellow-500'
+        <Button className='font-bold dark:text-[#333333] bg-yellow-400 dark:bg-[#FF8C42] px-3 py-2 rounded-lg hover:bg-yellow-300 dark:hover:bg-[#FF7A24] active:bg-yellow-500'
           onClick={(e) => {addApp(e)}}>Add Application</Button>
       </div>
     </div>

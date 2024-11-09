@@ -117,7 +117,7 @@ export default function AppFilter() {
       <div className="flex gap-2">      
         <FilterComponent filters={filters} setFilter={setFiltersValues} />
         <Button onClick={(e) => {applyFilters(e)}}
-          className='px-3 flex justify-center items-center bg-yellow-400 dark:bg-[#FF8C42] rounded-xl hover:bg-yellow-300 dark:hover:bg-[#FF7A24] active:bg-yellow-500'>
+          className='px-3 flex justify-center items-center font-bold dark:text-[#333333] bg-yellow-400 dark:bg-[#FF8C42] rounded-xl hover:bg-yellow-300 dark:hover:bg-[#FF7A24] active:bg-yellow-500'>
           Apply
         </Button>
       </div>
