@@ -55,7 +55,7 @@ function FilterComponent({
 
   const [toggle, setToggle] = useState(false);
   
-  // 
+  // Update filterBools to properly reflect selected filters by boolean values at indexes corresponding to filtersList
   const handleCheckboxes = (index: number) => {
     const updatedFiltersBool: Array<boolean> = filtersBool.map((bool:boolean, filterIndex:number) => {
       return filterIndex === index ? !bool : bool;
@@ -112,7 +112,7 @@ export default function AppFilter() {
       return myFiltersList.includes(filterList[index].toLowerCase());
     }))
     
-  }, [params])
+  }, [])
 
   // Sets the parameters of the url to apply selected sort/filter values
   const applyFilters = (event: MouseEvent<HTMLButtonElement>) => {
