@@ -1,10 +1,11 @@
 'use client';
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo } from "react";
 import { useState, MouseEvent } from "react";
 import { FunnelIcon } from "@heroicons/react/24/solid";
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { Button } from "../button";
 import clsx from "clsx";
+import Loading from "../loading";
 
 const sortList = [
   ['Latest', 'date_applied desc'],
@@ -20,9 +21,11 @@ const sortList = [
 const filterList = ['Pending', 'Rejected', 'Interviewed', 'Offered', 'Accepted'];
 
 function SortComponent({
-  setSort
+  sortValue,
+  setSort,
 }: {
-  setSort: Dispatch<SetStateAction<string>>
+  sortValue: string;
+  setSort: Dispatch<SetStateAction<string>>;
 }) {
 
   return (
@@ -30,7 +33,7 @@ function SortComponent({
       <div>
         <label htmlFor="sortBy" className="h-8">Sort By: </label>
         <select name="sortBy" id="sortBy" className="dark:bg-[#2C2C2C] py-2 w-fit h-10 rounded dark:hover:bg-[#333333]"
-          onChange={(e) => {setSort(e.target.value)}}>
+          onChange={(e) => {setSort(e.target.value)}} value={sortValue}>
           {sortList.map((sortElement, index) => {
             return (
               <option key={index} value={sortElement[1]}>{sortElement[0]}</option>
@@ -43,25 +46,26 @@ function SortComponent({
 }
 
 function FilterComponent({
-  filters,
-  setFilter
+  filtersBool,
+  setFilterBool
 }: {
-  filters: Array<boolean>,
-  setFilter : Dispatch<SetStateAction<Array<boolean>>>
+  filtersBool: Array<boolean>,
+  setFilterBool : Dispatch<SetStateAction<Array<boolean>>>
 }) {
 
   const [toggle, setToggle] = useState(false);
-
+  
+  // Update filterBools to properly reflect selected filters by boolean values at indexes corresponding to filtersList
   const handleCheckboxes = (index: number) => {
-    const updatedFilters: Array<boolean> = filters.map((bool:boolean, filterIndex:number) => {
+    const updatedFiltersBool: Array<boolean> = filtersBool.map((bool:boolean, filterIndex:number) => {
       return filterIndex === index ? !bool : bool;
     })
-    setFilter(updatedFilters);
+    setFilterBool(updatedFiltersBool);
   }
 
   return (
     <div className="relative">
-      <button onClick={() => {setToggle(!toggle)}} className='bg-gray-200 dark:bg-[#2C2C2C] dark:text-white p-2 h-10 rounded-xl flex items-center gap-2 dark:hover:bg-[#333333]'>
+      <button onClick={() => setToggle(!toggle)} className='bg-gray-200 dark:bg-[#2C2C2C] dark:text-white p-2 h-10 rounded-xl flex items-center gap-2 dark:hover:bg-[#333333]'>
         <span>Filter </span>
         <FunnelIcon className="inline w-4 h-4"/>
       </button>
@@ -76,7 +80,7 @@ function FilterComponent({
           return (
             <div key={index} className='flex items-center'>
               <input name={filterElement.toLowerCase()} id={filterElement.toLowerCase()} type="checkbox" className='mr-2 hover:cursor-pointer hover:bg-yellow-300'
-                checked={filters[index]} onChange={() => {handleCheckboxes(index)}}></input>
+                checked={filtersBool[index]} onChange={() => {handleCheckboxes(index)}}></input>
               <label htmlFor={filterElement.toLowerCase()} className='hover:cursor-pointer'>{filterElement}</label>
             </div>
           )
@@ -88,19 +92,34 @@ function FilterComponent({
 }
 
 export default function AppFilter() {
-  const [sortValue, setSortValue] = useState<string>('date_applied desc')
-  const [filters, setFiltersValues] = useState( new Array<boolean>(filterList.length).fill(false) );
+  const [sortValue, setSortValue] = useState<string>("")
+  const [filtersBool, setFiltersBool] = useState( new Array<boolean>(filterList.length).fill(false) );
+
 
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const params = new URLSearchParams(searchParams);
+  const params = useMemo(() => new URLSearchParams(searchParams), [searchParams]);
   const { replace } = useRouter();
 
+  // Correctly set the sort value and filter values based on query parameters
+  useEffect(() => {
+    const sortParam = params.get("sort");
+    setSortValue(sortParam || 'date_applied desc')
+
+    const filtersParam = params.get("filters");
+    const myFiltersList = filtersParam ? JSON.parse(filtersParam) : [];
+    setFiltersBool(filtersBool.map((_, index:number) => {
+      return myFiltersList.includes(filterList[index].toLowerCase());
+    }))
+    
+  }, [])
+
+  // Sets the parameters of the url to apply selected sort/filter values
   const applyFilters = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
     let updatedFilters = filterList.filter((filterElement, index) => {
-      if (filters[index]) return filterElement;
+      if (filtersBool[index]) return filterElement;
     }).map((value) => {
       return value.toLowerCase();
     });
@@ -113,9 +132,9 @@ export default function AppFilter() {
 
   return (
     <div className="w-full flex flex-col sm:flex-row gap-4 justify-end items-end">
-      <SortComponent setSort={setSortValue} />
+      <SortComponent sortValue={sortValue} setSort={setSortValue} />
       <div className="flex gap-2">      
-        <FilterComponent filters={filters} setFilter={setFiltersValues} />
+      <FilterComponent filtersBool={filtersBool} setFilterBool={setFiltersBool} />
         <Button onClick={(e) => {applyFilters(e)}}
           className='px-3 flex justify-center items-center font-bold dark:text-[#333333] bg-yellow-400 dark:bg-[#FF8C42] rounded-xl hover:bg-yellow-300 dark:hover:bg-[#FF7A24] active:bg-yellow-500'>
           Apply
