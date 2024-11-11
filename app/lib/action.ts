@@ -97,7 +97,8 @@ export async function signOutUser() {
   const supabase = createClient();
   
   // Sign Out with email
-  const { error } = await supabase.auth.signOut()
+  await supabase.auth.signOut();
+  redirect('/sign-in');
 }
 
 export async function forgotPassword(email: string) {
