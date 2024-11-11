@@ -1,11 +1,10 @@
 import Image from "next/image";
-import styles from "./page.module.css";
-import { Button } from "./ui/button";
 import { JetBrains_Mono } from "next/font/google";
 import SignInButton from "./ui/auth-ui/sign-in-button";
 import RegisterButton from "./ui/auth-ui/register-button";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
+import ThemeToggle from "./ui/ThemeToggle";
 
 const jetbrains = JetBrains_Mono({
   subsets: ['latin'],
@@ -27,7 +26,7 @@ export default async function Home() {
     <main className="flex flex-col min-h-screen px-28 py-16">
       <div className="flex justify-between">
         <div>
-          <p className="font-bold text-3xl">JobHive</p>
+          <p className="font-bold text-3xl">JobHive Hub</p>
         </div>
         <div className="flex gap-2">
           <SignInButton />
@@ -42,7 +41,7 @@ export default async function Home() {
             <p className="w-fit mb-4">Simplify,</p>
             <p className="w-fit mb-4">Organize,</p>
             <p className="w-fit mb-8">Track<span className="text-yellow-300">with</span></p>
-            <p className="w-fit mb-8">JobHive</p>
+            <p className="w-fit mb-8">JobHive Hub</p>
           </div>
           <hr className="h-[4px] w-full bg-black mb-4" />
           <div>
@@ -58,6 +57,7 @@ export default async function Home() {
         </div>
         
       </div>
+      <ThemeToggle className="absolute bottom-4 left-4 inline-flex"/>
     </main>
   );
 }
