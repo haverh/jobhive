@@ -5,6 +5,7 @@ import RegisterButton from "./ui/auth-ui/register-button";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import ThemeToggle from "./ui/ThemeToggle";
+import LandingPageImg from '../public/landing-page.jpg';
 
 const jetbrains = JetBrains_Mono({
   subsets: ['latin'],
@@ -51,9 +52,8 @@ export default async function Home() {
             </p>
           </div>
         </div>
-        <div className="flex justify-center items-center w-1/2">
-          <Image src="https://img.freepik.com/free-photo/cute-ai-generated-cartoon-bunny_23-2150288883.jpg?t=st=1717564958~exp=1717568558~hmac=8263fed64594674386f8185f1b1a517dbac0837e9f9b70fb8633db9d587ba7dd&w=826"
-            width={500} height={500} alt="Placeholder image of animated bunny" />
+        <div className="flex justify-center items-center w-1/2 relative border border-gray-700">
+          <Image src={LandingPageImg} alt="Placeholder image of animated bunny" fill className="object-cover" />
         </div>
         
       </div>
