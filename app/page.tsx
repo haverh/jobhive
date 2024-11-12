@@ -1,11 +1,11 @@
 import Image from "next/image";
-import styles from "./page.module.css";
-import { Button } from "./ui/button";
 import { JetBrains_Mono } from "next/font/google";
 import SignInButton from "./ui/auth-ui/sign-in-button";
 import RegisterButton from "./ui/auth-ui/register-button";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
+import ThemeToggle from "./ui/ThemeToggle";
+import LandingPageImg from '../public/landing-page.jpg';
 
 const jetbrains = JetBrains_Mono({
   subsets: ['latin'],
@@ -27,7 +27,7 @@ export default async function Home() {
     <main className="flex flex-col min-h-screen px-28 py-16">
       <div className="flex justify-between">
         <div>
-          <p className="font-bold text-3xl">JobHive</p>
+          <p className="font-bold text-3xl">JobHive Hub</p>
         </div>
         <div className="flex gap-2">
           <SignInButton />
@@ -42,7 +42,7 @@ export default async function Home() {
             <p className="w-fit mb-4">Simplify,</p>
             <p className="w-fit mb-4">Organize,</p>
             <p className="w-fit mb-8">Track<span className="text-yellow-300">with</span></p>
-            <p className="w-fit mb-8">JobHive</p>
+            <p className="w-fit mb-8">JobHive Hub</p>
           </div>
           <hr className="h-[4px] w-full bg-black mb-4" />
           <div>
@@ -52,12 +52,12 @@ export default async function Home() {
             </p>
           </div>
         </div>
-        <div className="flex justify-center items-center w-1/2">
-          <Image src="https://img.freepik.com/free-photo/cute-ai-generated-cartoon-bunny_23-2150288883.jpg?t=st=1717564958~exp=1717568558~hmac=8263fed64594674386f8185f1b1a517dbac0837e9f9b70fb8633db9d587ba7dd&w=826"
-            width={500} height={500} alt="Placeholder image of animated bunny" />
+        <div className="flex justify-center items-center w-1/2 relative border border-gray-700">
+          <Image src={LandingPageImg} alt="Placeholder image of animated bunny" fill className="object-cover" />
         </div>
         
       </div>
+      <ThemeToggle className="absolute bottom-4 left-4 inline-flex"/>
     </main>
   );
 }
