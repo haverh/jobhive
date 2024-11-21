@@ -53,6 +53,7 @@ export async function fetchApplications(id: string, query: string, currentPage: 
     .filter('status', 'in', `(${filters})`)
     .or(`role.ilike.*${query}*, company.ilike.*${query}*`)
     .order(sortOptions[0], {ascending: sortOptions[1] === 'asc'})
+    .order('id', { ascending: true })
     .range(offset, offset+ITEMS_PER_PAGE - 1)
 
   return data;
