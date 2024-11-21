@@ -11,9 +11,8 @@ import {
 import { Application } from '@/app/lib/definitions';
 import { insertApplication } from '@/app/lib/action';
 import { Button } from '../button';
-import Link from 'next/link';
 import { hasEmptyField } from '@/app/lib/action';
-import EmptyFieldError from './empty-field-error';
+import {EmptyFieldError} from './errors';
   
 export default function AddApplication({
   id
@@ -26,11 +25,13 @@ export default function AddApplication({
 
   const [applicationForm, setApplicationForm] = useState<Application>({id: id, role:'', company:'', job_posting: '', date_applied: maxDate, status: 'pending'});
   const [error, setError] = useState(false);
+  const [errorDescription, setErrorDescription] = useState('');
 
   const addApp = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
     if ( await hasEmptyField(applicationForm) ) {
+      setErrorDescription('Please fill in all fields.');
       setError(true);
     } else {
       setError(false);
@@ -40,7 +41,7 @@ export default function AddApplication({
 
   return (
     <div className='flex flex-col items-center'>
-      {error && <EmptyFieldError setDisplay={setError} />}
+      {error && <EmptyFieldError display={error} setDisplay={setError} errorDescription={errorDescription} />}
       <h1 className='pl-2 text-3xl md:w-4/5 lg:w-3/5 mb-6'>Applications / Add</h1>
       <form className='app-form md:w-4/5 lg:w-3/5'>
         <div className='pl-2 mb-2'>
