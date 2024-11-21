@@ -10,26 +10,33 @@ import {
   DocumentCheckIcon,} from '@heroicons/react/24/solid';
 import { updateApplication } from "@/app/lib/action";
 import { Button } from '../button';
+import { hasEmptyField } from '@/app/lib/action';
+import { EmptyFieldError } from './errors';
 
 export default function EditApplication({ application }: { application: Application }) {
   const router = useRouter();
   const [applicationForm, setApplicationForm] = useState<Application>(application);
   const maxDate = new Date().toISOString().split("T")[0];
+  const [error, setError] = useState(false);
+  const [errorDescription, setErrorDescription] = useState('');
 
-  const updateApplicationEvent = (event: MouseEvent<HTMLButtonElement>) => {
+  const updateApplicationEvent = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if ( (JSON.stringify(application) === JSON.stringify(applicationForm)) ) {
-      // console.log("ERROR: NO VALUES HAVE BEEN MODIFIED");
-    } else if ( Object.values(applicationForm).some(value => value.trim() === '') ) {
-      // console.log("THERE ARE SOME MISSING FIELDS THAT NEED TO BE FILLED");
+      setErrorDescription('No values have been modified.');
+      setError(true);
+    } else if ( await hasEmptyField(applicationForm) ) {
+      setErrorDescription('Please fill in all fields.');
+      setError(true);
     } else {
-      // console.log("COMMENCING UPDATE WITH DATA", applicationForm);
+      setError(false);
       updateApplication(applicationForm);
     }
   }
 
   return (
     <div className='flex flex-col items-center'>
+      {error && <EmptyFieldError display={error} setDisplay={setError} errorDescription={errorDescription} />}
       <h1 className='pl-2 text-3xl md:w-4/5 lg:w-3/5 mb-6'>Applications / Edit</h1>
       <form className='app-form md:w-4/5 lg:w-3/5'>
         <div className='pl-2 mb-2'>
