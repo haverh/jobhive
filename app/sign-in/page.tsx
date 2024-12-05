@@ -1,12 +1,11 @@
 import SignIn from "../ui/auth-ui/sign-in-form"
-import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import ThemeToggle from "../ui/ThemeToggle";
+import { getUser } from "../lib/action";
 
 export default async function SignInPage() {
-  const supabase = createClient()
 
-  const { data, error } = await supabase.auth.getUser()
+  const { data, error } = await getUser()
 
   if (!error || data?.user) {
     redirect('/dashboard')

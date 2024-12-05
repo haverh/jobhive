@@ -13,18 +13,7 @@ const ITEMS_PER_PAGE = 10;
 export async function fetchTotalPages(id:string, query: string, sort: string, filters: Array<string>) {
   noStore();
 
-  const supabase = createClient();
-  const cookieStore = cookies();
-  console.log(cookieStore)
-  const authCookie = cookieStore.get(`sb-${process.env.NEXT_PUBLIC_SUPABASE_PROJECT_REF}-auth-token`);
-  // console.log("YESSSSSSSSS", authCookie)
-  const authValue = JSON.parse(authCookie?.value!)
-  console.log("ACCESS_TOKEN:", authValue.access_token)
-  console.log("TOKEN_TYPE:", authValue.token_type)
-  console.log("EXPIRES_IN:", authValue.expires_in)
-  console.log("EXPIRES_AT:", authValue.expires_at)
-  console.log("REFRESH_TOKEN:", authValue.refresh_token)
-  // const user_id = authCookieValue?.user.id;
+  const supabase = await createClient();
 
   const {count, error} = await supabase
     .from('Applications')
@@ -40,7 +29,7 @@ export async function fetchTotalPages(id:string, query: string, sort: string, fi
 
 export async function fetchApplications(id: string, query: string, currentPage: number, sort: string, filters: Array<string>) {
   noStore();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
   
@@ -61,7 +50,7 @@ export async function fetchApplications(id: string, query: string, currentPage: 
 
 export async function fetchApplicationById(id: string) {
   noStore();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   let {data, error} = await supabase
     .from('Applications')
@@ -74,7 +63,7 @@ export async function fetchApplicationById(id: string) {
 // Fetching Statistics
 export async function fetchTotalApplied(id: string) {
   noStore();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const {data, error} = await supabase.rpc('totalapplied', {uid: id});
 
@@ -82,7 +71,7 @@ export async function fetchTotalApplied(id: string) {
 }
 
 export async function fetchTotalAppliedThisWeek(id: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const {data, error} = await supabase.rpc('totalappliedthisweek', {uid: id});
 
@@ -91,7 +80,7 @@ export async function fetchTotalAppliedThisWeek(id: string) {
 
 export async function fetchStatusRatios(id: string) {
   noStore();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   let {data, error} = await supabase.rpc('statusratio', {uid: id});
 
@@ -100,7 +89,7 @@ export async function fetchStatusRatios(id: string) {
 
 export async function fetchAppsTimelineThisWeek(id: string) {
   noStore();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const {data, error} = await supabase.rpc('applicationsthisweek', {uid: id});
 
@@ -109,7 +98,7 @@ export async function fetchAppsTimelineThisWeek(id: string) {
 
 export async function fetchAppsTimelinePrevWeek(id: string) {
   noStore();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const {data, error} = await supabase.rpc('applicationsprevweek', {uid: id});
 
@@ -118,7 +107,7 @@ export async function fetchAppsTimelinePrevWeek(id: string) {
 
 export async function fetchAppCountByMonth(id: String) {
   noStore();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const {data, error} = await supabase.rpc('appsbymonth', {uid: id});
 

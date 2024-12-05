@@ -2,7 +2,7 @@ import Image from "next/image";
 import { JetBrains_Mono } from "next/font/google";
 import SignInButton from "./ui/auth-ui/sign-in-button";
 import RegisterButton from "./ui/auth-ui/register-button";
-import { createClient } from "@/utils/supabase/server";
+import { getUser } from "./lib/action";
 import { redirect } from "next/navigation";
 import ThemeToggle from "./ui/ThemeToggle";
 import LandingPageImg from '../public/landing-page.jpg';
@@ -14,9 +14,8 @@ const jetbrains = JetBrains_Mono({
 
 
 export default async function Home() {
-  const supabase = createClient()
 
-  const { data, error } = await supabase.auth.getUser()
+  const { data, error } = await getUser()
   
   if (!error || data?.user) {
     redirect('/dashboard')

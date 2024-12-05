@@ -1,5 +1,4 @@
 // 'use client';
-import { useState } from "react";
 import { Metadata } from "next";
 import Table from "@/app/ui/applications/tables"
 import AppSearch from "@/app/ui/applications/app-search"
@@ -9,7 +8,7 @@ import Pagination from "@/app/ui/applications/pagination";
 import { fetchTotalPages } from "@/app/lib/data";
 import { Suspense } from "react";
 import Loading from "@/app/ui/loading";
-import { createClient } from "@/utils/supabase/server";
+import { getUser } from "@/app/lib/action";
 
 
 export const metadata: Metadata = {
@@ -29,8 +28,8 @@ export default async function Page({
     filters?: string;
   };
 }) {
-  const supabase = createClient()
-  const { data, error } = await supabase.auth.getUser()
+  const { data, error } = await getUser()
+  console.log(data)
   const {id} =  data.user!;
 
   // const [params, setParams] = useState();

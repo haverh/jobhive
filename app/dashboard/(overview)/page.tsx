@@ -4,12 +4,11 @@ import ApplyTimeline from '@/app/ui/dashboard/apply-timelime';
 import { fetchStatistics } from '@/app/lib/data';
 import { StatusRatioSkeleton, ValueCardSkeleton, ApplyTimelineSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
-import { createClient } from "@/utils/supabase/server";
+import { getUser } from '@/app/lib/action';
 
 export default async function Page() {
-  const supabase = createClient()
 
-  const { data, error } = await supabase.auth.getUser()
+  const { data, error } = await getUser()
   const {id} =  data.user!;
 
   const {
