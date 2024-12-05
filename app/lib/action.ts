@@ -12,7 +12,7 @@ import { isAuthApiError, isAuthError } from '@supabase/supabase-js';
 // Account Server Functions
 export async function registerUser(user: User){
   console.log("IN RESIGETER IN ACTION TS")
-  const supabase = createClient();
+  const supabase = await createClient();
 
   // Sign Up with email
   const { data, error } = await supabase.auth.signUp(
@@ -50,7 +50,7 @@ export async function registerUser(user: User){
 
 
 export async function resendConfirmation(email: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { error } = await supabase.auth.resend({
     type: 'signup',
@@ -70,7 +70,7 @@ export async function resendConfirmation(email: string) {
 
 
 export async function signInUser(user: User) {
-  const supabase = createClient();
+  const supabase = await createClient();
   
   // Sign in with email
   const { data, error } = await supabase.auth.signInWithPassword({
@@ -94,7 +94,7 @@ export async function signInUser(user: User) {
 
 
 export async function signOutUser() {
-  const supabase = createClient();
+  const supabase = await createClient();
   
   // Sign Out with email
   await supabase.auth.signOut();
@@ -102,7 +102,7 @@ export async function signOutUser() {
 }
 
 export async function forgotPassword(email: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${process.env.NEXT_PUBLIC_VERCEL_DOMAIN}/reset-password`,
@@ -118,16 +118,16 @@ export async function forgotPassword(email: string) {
 
 
 export async function getUser() {
-  const supabase = createClient();
+  const supabase = await createClient();
 
-  const { data: { user } } = await supabase.auth.getUser();
-  return user;
+  const { data, error } = await supabase.auth.getUser();
+  return {data, error}
 }
 
 
 
 export async function updatePassword(password: string, code: string | null) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   // console.log("GOT INTO UPDATE PASSWORD")
   console.log("CODE IS:", code);
@@ -153,7 +153,7 @@ export async function updatePassword(password: string, code: string | null) {
 
 export async function updateLinks(links: Links) {
   console.log("IN UPDATE LINKS ", links)
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { error } = await supabase.auth.updateUser({
     data: {
@@ -168,7 +168,7 @@ export async function updateLinks(links: Links) {
 }
 
 export async function updateProfile(profile: Profile) {
-  const supabase = createClient();
+  const supabase = await createClient();
   console.log("PROFILE: ==>", profile);
   const { error } = await supabase.auth.updateUser({
     email: profile.email,
@@ -187,7 +187,7 @@ export async function updateProfile(profile: Profile) {
 }
 
 export async function deleteAccount(userId: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   
   const { data, error } = await supabase.auth.admin.deleteUser(userId);
@@ -204,7 +204,7 @@ export async function deleteAccount(userId: string) {
 // Application Server Functions
 export async function insertApplication(app: Application) {
   noStore();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const {data, error} = await supabase
     .from('Applications')
@@ -230,7 +230,7 @@ export async function insertApplication(app: Application) {
 
 export async function updateApplication(app: Application) {
   noStore();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   // console.log(app);
 
@@ -258,7 +258,7 @@ export async function updateApplication(app: Application) {
 
 export async function deleteApplication(id: string) {
   noStore();
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const {error} = await supabase
     .from('Applications')

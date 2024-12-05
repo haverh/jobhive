@@ -15,11 +15,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const user = await getUser();
-        if (!user) {
+        const {data, error} = await getUser();
+        if (!data) {
           router.push("/sign-in");
         } else {
-          setUser(user);
+          setUser(data.user);
         }
       } catch (error) {
         console.error('Error fetching user:', error);

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import AddApplication from '@/app/ui/applications/add-app';
-import { createClient } from '@/utils/supabase/server';
+import { getUser } from "@/app/lib/action";
 
 export const metadata: Metadata = {
   title: {
@@ -10,9 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default async function AddApplicationPage() {
-  const supabase = createClient();
 
-  const { data, error } = await supabase.auth.getUser();
+  const { data, error } = await getUser();
   const {id} =  data.user!;
 
 
