@@ -97,7 +97,7 @@
 * [![NPM][Npmjs.com]][Npm-url]
 * [![Supabase][Supabase.com]][Supabase-url]
 * [![Node][Node.js]][Node-url]
-* [TailwindCSS.com][Tailwindcss-url]
+* [![Tailwind][TailwindCSS.com]][Tailwindcss-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
