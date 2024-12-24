@@ -83,9 +83,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `haverh`, `jobhive`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+[![Jobhive Hub Dashboard][product-dashboard-screenshot]](jobhive-eta.vercel.app)
+[![Jobhive Hub Entries][product-entries-screenshot]](jobhive-eta.vercel.app)
+[![Jobhive Hub Create][product-add-screenshot]](jobhive-eta.vercel.app)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -97,13 +97,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 * [![NPM][Npmjs.com]][Npm-url]
 * [![Supabase][Supabase.com]][Supabase-url]
 * [![Node][Node.js]][Node-url]
-<!-- * [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url] -->
+* [TailwindCSS.com][Tailwindcss-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -234,7 +228,9 @@ Project Link: [https://github.com/haverh/jobhive](https://github.com/haverh/jobh
 [license-url]: https://github.com/haverh/jobhive/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/haverho
-[product-screenshot]: images/jobhive.png
+[product-dashboard-screenshot]: images/jobhive.png
+[product-entries-screenshot]: images/jobhive-entries.png
+[product-add-screenshot]: images/jobhive-add.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
@@ -257,3 +253,6 @@ Project Link: [https://github.com/haverh/jobhive](https://github.com/haverh/jobh
 [Supabase-url]: https://supabase.com
 [Node.js]: https://img.shields.io/badge/nodejs-1C1C1C?style=for-the-badge&logo=node.js&logoColor=63B447
 [Node-url]: https://nodejs.org/en
+[TailwindCSS.com]: https://img.shields.io/badge/Tailwind%20CSS-1C1C1C?style=for-the-badge&logo=tailwindcss&logoColor=38B2AC
+[Tailwindcss-url]: https://tailwindcss.com/
+
