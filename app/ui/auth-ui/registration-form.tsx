@@ -1,20 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
-import { useState, useEffect, MouseEvent } from "react"
+import { useState, MouseEvent } from "react"
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
-import { EyeIcon, EyeSlashIcon, ChevronDownIcon, ChevronUpIcon, CheckIcon } from "@heroicons/react/24/outline";
+import { EyeIcon, EyeSlashIcon, CheckIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { RegistrationFormData, User } from "../../lib/definitions";
 import { registerUser } from "@/app/lib/action";
 import clsx from "clsx";
+import Loading from "../loading";
 
 export default function RegistrationForm() {
   const [visible, setVisible] = useState<[boolean, boolean]>([false, false]);
-  const [openLinks, setOpenLinks] = useState(false);
   const [formData, setFormData] = useState<RegistrationFormData>({name: '', email: '', password: '', confirmPassword: ''});
   const [missmatch, setMissmatch] = useState(false);
   const [errors, setErrors] = useState<RegistrationFormData>({name: '', email: '', password: '', confirmPassword: ''});
-  const [validForm, setValidForm] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
   const togglePassword = (event: MouseEvent<HTMLButtonElement>) => {
@@ -31,7 +31,7 @@ export default function RegistrationForm() {
     setMissmatch(formData?.password !== inputPassword && formData?.confirmPassword !== inputPassword);
   }
 
-  const validateForm = () => {
+  const validateForm = (): boolean => {
     let errors:RegistrationFormData = {name: '', email: '', password: '', confirmPassword: ''};
     let mark = 0;
 
@@ -56,19 +56,29 @@ export default function RegistrationForm() {
       mark += 1
     }
 
-    setValidForm(mark === 0)
+    if (missmatch) {
+      errors.confirmPassword = 'Passwords do not match.'
+      mark += 1
+    }
+    
+    setLoading(mark === 0);
     setErrors(errors);
+
+    return mark === 0;
   }
 
   const submitForm = async (event: MouseEvent<HTMLButtonElement>) => {
-    validateForm();
     event.preventDefault();
-    if (validForm && formData.password === formData.confirmPassword) {
-      const user:User = {name: formData.name, email: formData.email, password: formData.password }
+
+    const isFormValid = validateForm();
+
+    if (isFormValid && formData.password === formData.confirmPassword) {
+      const user:User = {name: formData.name, email: formData.email, password: formData.password };
       const msg = await registerUser(user);
 
       if (msg === "user_already_exists") {
-        alert("An account with the email already exist")
+        setLoading(false);
+        alert("An account with the email already exist");
       }
     }
   }
@@ -76,8 +86,9 @@ export default function RegistrationForm() {
   return (
     <form className="account-form min-w-[300px] max-w-[350px] p-4 rounded-lg shadow-lg">
       <h1 className="font-bold text-2xl text-center">Register</h1>
+      {loading ? <div className="flex justify-center"><Loading /></div> :
       <div className="pb-4">
-        <div>
+          <div>
           <label htmlFor="name"
             className="mb-2 mt-3 block text-md font-medium text-gray-900">Name</label>
           <div className="border border-solid border-gray-400 rounded-xl">
@@ -140,7 +151,7 @@ export default function RegistrationForm() {
           {errors.confirmPassword && <p className="text-[red]">
             <ExclamationCircleIcon className="text-[red] h-full w-6 inline" />{errors.confirmPassword}</p>}
         </div>
-      </div>
+      </div>}
 
       <div className="mt-6 flex justify-center">
         <button type="submit" className="w-full bg-yellow-400 py-2 px-3 rounded-xl font-medium hover:bg-yellow-300 active:bg-yellow-500"

@@ -1,12 +1,13 @@
-import { tailspin } from "ldrs";
+'use client'
+import { useEffect } from 'react'
 
 export default function Loading() {
-  return ( 
-    <l-tailspin
-      size="40"
-      stroke="5"
-      speed="0.9"
-      color="black" 
-    ></l-tailspin>
-  )
+  useEffect(() => {
+    async function getLoader() {
+      const { spiral } = await import('ldrs')
+      spiral.register()
+    }
+    getLoader()
+  }, [])
+  return <l-spiral color="coral"></l-spiral>
 }
