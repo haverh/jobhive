@@ -25,6 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="min-h-full">
       <body className={`${inter.className} antialiased min-h-full`}>
+        <script
+          type="module"
+          defer
+          src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/spiral.js"
+        ></script>
         <ThemeProvider>
           {children}
           <Analytics />
