@@ -6,13 +6,14 @@ import {
   PointElement,
   LineElement,
   BarElement,
+  BarController,
   Title,
   Tooltip,
   Legend,
   TooltipItem,
   ChartOptions  
 } from 'chart.js';
-import { Chart, Bar } from 'react-chartjs-2';
+import { Chart, } from 'react-chartjs-2';
 import { useTheme } from '../ThemeContext';
 
 ChartJS.register(
@@ -21,6 +22,7 @@ ChartJS.register(
   PointElement,
   LineElement,
   BarElement,
+  BarController,
   Title,
   Tooltip,
   Legend
