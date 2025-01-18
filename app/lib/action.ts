@@ -40,9 +40,8 @@ export async function registerUser(user: User){
       return "user_already_exists"
     } else {
       revalidatePath('/', 'layout')
-      redirect('/dashboard')
+      redirect(`/confirm?message=Please check your email to verify your account.`);
     }
-    
   }
 
   
