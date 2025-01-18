@@ -17,7 +17,6 @@ export default async function Page() {
     statusRatio,
     appsThisWeek,
     appsPrevWeek,
-    appCountByWeek,
     appCountByMonth
   } = await fetchStatistics(id);
 
@@ -35,7 +34,7 @@ export default async function Page() {
         <ValueCard title={'Total Applied This Week'} value={totalAppliedThisWeek} />
       </Suspense>
       <Suspense fallback={<ApplyTimelineSkeleton />}>
-        <ApplyTimeline appCountByWeek={appCountByWeek} appCountByMonth={appCountByMonth} />
+        <ApplyTimeline thisWeek={appsThisWeek} prevWeek={appsPrevWeek} appCountByMonth={appCountByMonth} />
       </Suspense>
     </div>
   )

@@ -114,16 +114,6 @@ export async function fetchAppCountByMonth(id: String) {
   return data;
 }
 
-export async function fetchAppCountByWeek(id: String) {
-  noStore();
-  const supabase = await createClient();
-
-  const {data, error} = await supabase.rpc('last12weeks', {uid: id});
-
-  return data;
-}
-
-
 export async function fetchStatistics(id: string) {
   noStore();
   
@@ -133,7 +123,6 @@ export async function fetchStatistics(id: string) {
     fetchStatusRatios(id),
     fetchAppsTimelineThisWeek(id),
     fetchAppsTimelinePrevWeek(id),
-    fetchAppCountByWeek(id),
     fetchAppCountByMonth(id)
   ])
   
@@ -142,8 +131,7 @@ export async function fetchStatistics(id: string) {
   const statusRatio = data[2];
   const appsThisWeek = data[3];
   const appsPrevWeek = data[4];
-  const appCountByWeek = data[5];
-  const appCountByMonth = data[6];
+  const appCountByMonth = data[5]
 
   return {
     totalApplied,
@@ -151,7 +139,6 @@ export async function fetchStatistics(id: string) {
     statusRatio,
     appsThisWeek,
     appsPrevWeek,
-    appCountByWeek,
     appCountByMonth
   }
 }
