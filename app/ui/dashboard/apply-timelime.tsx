@@ -44,7 +44,6 @@ export default function ApplyTimeline({
   }
 
   const trend = calculateMovingAverage(appCountByWeek.map((obj) => { return obj.count }),3)
-  console.log("TRHEND LINE", trend)
 
   const {theme} = useTheme()
   
