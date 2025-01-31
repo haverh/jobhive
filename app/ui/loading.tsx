@@ -9,5 +9,9 @@ export default function Loading() {
     }
     getLoader()
   }, [])
-  return <l-spiral color="coral"></l-spiral>
+  return (
+    <div className="flex justify-center items-center w-full h-full">
+      <l-spiral color="coral"></l-spiral>
+    </div>
+  )
 }
