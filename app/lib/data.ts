@@ -45,7 +45,7 @@ export async function fetchApplications(id: string, query: string, currentPage: 
     .order('id', { ascending: true })
     .range(offset, offset+ITEMS_PER_PAGE - 1)
 
-  return data;
+  return data ?? [];
 }
 
 export async function fetchApplicationById(id: string) {
