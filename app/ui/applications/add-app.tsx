@@ -27,6 +27,13 @@ export default function AddApplication({
   const [error, setError] = useState(false);
   const [errorDescription, setErrorDescription] = useState('');
 
+  const enforceHTTPS = (url: string): string => {
+    if (!url.startsWith("https://")) {
+      return "https://" + url;
+    }
+    return url;
+  }
+
   const addApp = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
@@ -62,7 +69,7 @@ export default function AddApplication({
           <label htmlFor="job-posting" className="block">Enter Job Posting</label>
           <input id="job-posting" name="job-posting" type="text"
             className="h-8 pl-2"
-            onChange={(e) => {setApplicationForm({...applicationForm, job_posting: e.target.value})}}></input>
+            onChange={(e) => {setApplicationForm({...applicationForm, job_posting: enforceHTTPS(e.target.value)})}}></input>
         </div>
 
         <div className='pl-2 mb-4'>
