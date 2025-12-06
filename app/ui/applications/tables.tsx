@@ -31,7 +31,34 @@ export default function Table({
       setLoading(true);
       try {
         const apps: Application[] = await fetchApplications(id, query, currentPage, sort, filters);
-        setApplications(apps || []);
+        
+        const formattedApps = apps.map(app => {
+          const utcStringFromApi = app.date_applied;
+
+          if (!utcStringFromApi) {
+              return app;
+          }
+          const displayDate = new Date(utcStringFromApi);
+          const userFriendlyTime = displayDate.toLocaleString(
+            undefined, // Use default locale
+            { 
+                year: 'numeric', 
+                month: '2-digit',
+                day: '2-digit',
+                hour: 'numeric', 
+                minute: '2-digit',
+                // OMITTING 'second' removes the seconds component
+            }
+          );
+          
+          return {
+              ...app, // Keep all original properties
+              date_applied: userFriendlyTime // Add the new formatted field
+          };
+      });
+
+
+        setApplications(formattedApps || []);
       } catch (error) {
         console.error("Error fetching data", error);
       } finally {

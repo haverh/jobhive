@@ -20,10 +20,13 @@ export default function AddApplication({
   id: string;
 }) {
   const router = useRouter();
-  const date = new Date();
-  const maxDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 
-  const [applicationForm, setApplicationForm] = useState<Application>({id: id, role:'', company:'', job_posting: '', date_applied: maxDate, status: 'pending'});
+  const now = new Date();
+  const datePart = now.toLocaleDateString('en-CA').replace(/\//g, '-');
+  const timePart = now.toLocaleTimeString('en-CA', { hour12: false, hour: '2-digit', minute: '2-digit' });
+  const maxDateTime = `${datePart}T${timePart}`;
+
+  const [applicationForm, setApplicationForm] = useState<Application>({id: id, role:'', company:'', job_posting: '', date_applied: maxDateTime, status: 'pending'});
   const [error, setError] = useState(false);
   const [errorDescription, setErrorDescription] = useState('');
 
@@ -33,7 +36,6 @@ export default function AddApplication({
     }
     return url;
   }
-
 
 
   const addApp = async (event: MouseEvent<HTMLButtonElement>) => {
@@ -76,9 +78,13 @@ export default function AddApplication({
 
         <div className='pl-2 mb-4'>
           <label htmlFor="date" className="block">Enter Date</label>
-          <input id="date" name="date" type="date" max={maxDate} defaultValue={maxDate}
+          <input id="date" name="date" type="datetime-local" max={maxDateTime} defaultValue={maxDateTime}
             className="h-8 pl-2"
-            onChange={(e) => {setApplicationForm({...applicationForm, date_applied: e.target.value.trim()})}}></input>
+            onChange={(e) => {
+              const localDate = new Date(e.target.value); 
+              const utcString = localDate.toISOString();
+              console.log(utcString);
+              setApplicationForm({...applicationForm, date_applied: utcString})}}></input>
         </div>
 
         <div>

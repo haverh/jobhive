@@ -16,9 +16,14 @@ import { EmptyFieldError } from './errors';
 export default function EditApplication({ application }: { application: Application }) {
   const router = useRouter();
   const [applicationForm, setApplicationForm] = useState<Application>(application);
-  const maxDate = new Date().toISOString().split("T")[0];
   const [error, setError] = useState(false);
   const [errorDescription, setErrorDescription] = useState('');
+  console.log(application);
+
+  const now = new Date();
+  const datePart = now.toLocaleDateString('en-CA').replace(/\//g, '-');
+  const timePart = now.toLocaleTimeString('en-CA', { hour12: false, hour: '2-digit', minute: '2-digit' });
+  const maxDateTime = `${datePart}T${timePart}`;
 
   const updateApplicationEvent = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -76,11 +81,14 @@ export default function EditApplication({ application }: { application: Applicat
 
         <div className='pl-2 mb-4'>
           <label htmlFor="date" className="block">Date</label>
-          <input id="date" name="date" type="date" max={maxDate}
+          <input id="date" name="date" type="datetime-local" max={maxDateTime}
             className="h-8 pl-2 border border-black w-full rounded-md focus:outline-yellow-500"
             placeholder={application.date_applied}
             defaultValue={application.date_applied}
-            onChange={(e) => {setApplicationForm({...applicationForm, date_applied: e.target.value})}}></input>
+            onChange={(e) => {
+              const localDate = new Date(e.target.value); 
+              const utcString = localDate.toISOString();
+              setApplicationForm({...applicationForm, date_applied: utcString})}}></input>
         </div>
 
         <div>
