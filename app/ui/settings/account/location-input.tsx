@@ -32,7 +32,11 @@ export default function LocationInput({
     setValue(e.target.value);
   }
 
-  const handleSelect = (val: string) => {
+  const handleSelect = (val: string | null) => {
+    if (val === null) {
+      console.log("Selection was cleared.")
+      return;
+    }
     setValue(val, false);
     setProfile({...profile, location: val});
   };
