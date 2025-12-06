@@ -3,6 +3,7 @@ import { useState } from "react";
 import { deleteApplication } from "@/app/lib/action";
 
 import { TrashIcon } from "@heroicons/react/24/solid";
+import router from "next/router";
 
 
 interface ConfirmationModalProps {
@@ -36,22 +37,49 @@ export function DeleteApplicationButton({
   appId: string;
 }) {
   const [isConfirmationOpen, setIsConfrimationOpen] = useState(false);
-
-  const deleteAppWithId = deleteApplication.bind(null, appId);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleDeleteClicked = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setIsConfrimationOpen(true);
   }
-
-  const handleConfirmation = () => {
-    deleteAppWithId();
-    setIsConfrimationOpen(false);
-  }
-
+  
   const handleCancellation = () => {
     setIsConfrimationOpen(false);
   }
+
+  const handleConfirmation = async () => {
+    setIsDeleting(true);
+
+    try {
+      // 2. Call the Server Action and await its completion
+      const result = await deleteApplication(appId); 
+
+      // 3. Handle the result (optional, but good practice)
+      if (result && result.success) {
+        // Data is now deleted on the server, and the necessary data is revalidated.
+        console.log(`Application ${appId} deleted successfully.`);
+      } else {
+        console.error("Deletion failed on server:", result.error);
+        if (result.redirectTo) {
+          router.replace(result.redirectTo);
+          return; // Stop further execution in this function
+        }
+      }
+
+    } catch (error) {
+      console.error("Network or unexpected error during deletion:", error);
+      // You could show an error toast here
+    } finally {
+      // 4. Reset states: stop loading and CLOSE the modal.
+      setIsDeleting(false);
+      setIsConfrimationOpen(false); 
+    }
+    deleteApplication(appId);
+    setIsConfrimationOpen(false);
+  }
+
+  
 
   return (
     <>
