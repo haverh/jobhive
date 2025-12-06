@@ -10,7 +10,9 @@ export const metadata: Metadata = {
 };
 
 export default async function EditPage({ params }: { params: { id: string } }) {
-  const appId = params.id;
+  const resolvedParams = await (params ?? {});
+
+  const appId = resolvedParams.id;
   // console.log(appId);
 
   const application = await fetchApplicationById(appId)

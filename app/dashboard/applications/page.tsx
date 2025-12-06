@@ -28,15 +28,17 @@ export default async function Page({
     filters?: string;
   };
 }) {
+  const resolvedSearchParams = await (searchParams ?? {});
+
   const { data, error } = await getUser()
   console.log(data)
   const {id} =  data.user!;
 
   // const [params, setParams] = useState();
-  const query = searchParams?.query || '';
-  const currentPage = Number(searchParams?.page) || 1;
-  const sort = searchParams?.sort || 'date_applied desc';
-  const filters: Array<string> = searchParams?.filters && JSON.parse(searchParams?.filters!) || ['pending', 'rejected', 'interviewed', 'offered', 'accepted'];
+  const query = resolvedSearchParams?.query || '';
+  const currentPage = Number(resolvedSearchParams?.page) || 1;
+  const sort = resolvedSearchParams?.sort || 'date_applied desc';
+  const filters: Array<string> = resolvedSearchParams?.filters && JSON.parse(resolvedSearchParams?.filters!) || ['pending', 'rejected', 'interviewed', 'offered', 'accepted'];
 
   const totalPages = Number(await fetchTotalPages(id, query, sort, filters));
 
