@@ -34,6 +34,8 @@ export default function AddApplication({
     return url;
   }
 
+
+
   const addApp = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
@@ -55,28 +57,28 @@ export default function AddApplication({
           <label htmlFor="role" className="block">Enter Role</label>
           <input id="role" name="role" type="text"
             className="h-8 pl-2"
-            onChange={(e) => {setApplicationForm({...applicationForm, role: e.target.value})}}></input>
+            onChange={(e) => {setApplicationForm({...applicationForm, role: e.target.value.trim()})}}></input>
         </div>
 
         <div className='pl-2 mb-2'>
           <label htmlFor="company" className="block">Enter Company</label>
           <input id="company" name="company" type="text"
             className="h-8 pl-2"
-            onChange={(e) => {setApplicationForm({...applicationForm, company: e.target.value})}}></input>
+            onChange={(e) => {setApplicationForm({...applicationForm, company: e.target.value.trim()})}}></input>
         </div>
 
         <div className='pl-2 mb-2'>
           <label htmlFor="job-posting" className="block">Enter Job Posting</label>
           <input id="job-posting" name="job-posting" type="text"
             className="h-8 pl-2"
-            onChange={(e) => {setApplicationForm({...applicationForm, job_posting: enforceHTTPS(e.target.value)})}}></input>
+            onChange={(e) => {setApplicationForm({...applicationForm, job_posting: enforceHTTPS(e.target.value).trim()})}}></input>
         </div>
 
         <div className='pl-2 mb-4'>
           <label htmlFor="date" className="block">Enter Date</label>
           <input id="date" name="date" type="date" max={maxDate} defaultValue={maxDate}
             className="h-8 pl-2"
-            onChange={(e) => {setApplicationForm({...applicationForm, date_applied: e.target.value})}}></input>
+            onChange={(e) => {setApplicationForm({...applicationForm, date_applied: e.target.value.trim()})}}></input>
         </div>
 
         <div>
