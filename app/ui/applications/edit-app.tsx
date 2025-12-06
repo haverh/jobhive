@@ -30,7 +30,15 @@ export default function EditApplication({ application }: { application: Applicat
       setError(true);
     } else {
       setError(false);
-      updateApplication(applicationForm);
+      const status = await updateApplication(applicationForm);
+      if ( status.success ) {
+        router.back();
+      } else {
+        if (status.redirectTo) {
+          router.replace(status.redirectTo);
+          return; // Stop further execution in this function
+        }
+      }
     }
   }
 
