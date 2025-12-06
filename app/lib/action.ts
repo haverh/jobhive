@@ -245,14 +245,14 @@ export async function updateApplication(app: Application) {
     .eq('id',app.id)
     .select()
 
-  console.log(data, error);
   if ( error ) {
     console.log(error)
-    redirect('/error')
+    return { success: false, error: error, redirectTo: '/error' };
   }
 
   revalidatePath('/', 'layout')
-  redirect('/dashboard/applications')
+  // redirect('/dashboard/applications')
+  return { success: true  };
 }
 
 export async function deleteApplication(id: string) {
@@ -266,11 +266,11 @@ export async function deleteApplication(id: string) {
 
   if ( error ) {
     console.log(error)
-    redirect('/error')
+    return { success: false, error: error, redirectTo: '/error' };
   }
 
   revalidatePath('/', 'layout')
-  redirect('/dashboard/applications')  
+  return { success: true }; 
 }
 
 
