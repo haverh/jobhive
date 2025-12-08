@@ -25,8 +25,10 @@ export default function AddApplication({
   const datePart = now.toLocaleDateString('en-CA').replace(/\//g, '-');
   const timePart = now.toLocaleTimeString('en-CA', { hour12: false, hour: '2-digit', minute: '2-digit' });
   const maxDateTime = `${datePart}T${timePart}`;
+  const initialDateLocal = new Date(maxDateTime);
+  const maxDateTimeUTC = initialDateLocal.toISOString();
 
-  const [applicationForm, setApplicationForm] = useState<Application>({id: id, role:'', company:'', job_posting: '', date_applied: maxDateTime, status: 'pending'});
+  const [applicationForm, setApplicationForm] = useState<Application>({id: id, role:'', company:'', job_posting: '', date_applied: maxDateTimeUTC, status: 'pending'});
   const [error, setError] = useState(false);
   const [errorDescription, setErrorDescription] = useState('');
 
@@ -83,7 +85,6 @@ export default function AddApplication({
             onChange={(e) => {
               const localDate = new Date(e.target.value); 
               const utcString = localDate.toISOString();
-              console.log(utcString);
               setApplicationForm({...applicationForm, date_applied: utcString})}}></input>
         </div>
 

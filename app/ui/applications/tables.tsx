@@ -56,8 +56,6 @@ export default function Table({
               date_applied: userFriendlyTime // Add the new formatted field
           };
       });
-
-
         setApplications(formattedApps || []);
       } catch (error) {
         console.error("Error fetching data", error);
